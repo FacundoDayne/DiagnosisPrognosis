@@ -48,10 +48,10 @@ namespace DiagnosisPrognosis
                 this.Illness_Name = Illness_Name;
                 this.Symptom_Name.Add(Symptom_Name);
             }
-            public string getIllnessName()
-            {
+            public string getIllnessName(){return Illness_Name;}
+            public ArrayList getSymptomName() { 
+                return Symptom_Name; }
 
-            }
         }
 
 
