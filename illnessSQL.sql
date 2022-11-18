@@ -1,4 +1,4 @@
-﻿
+﻿create database IllnessDb;
 
 create table SymptomsTable(symptom_id int identity(1,1) primary key, 
 symptom_name varchar(50));
