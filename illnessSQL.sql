@@ -1,13 +1,13 @@
 ﻿
 
-create table SymptomsTable(symptom_id int identity(1,1) primary key, 
+create table SymptomsTable(symptom_id int identity(0,1) primary key, 
 symptom_name varchar(50));
 
 create table IllnessTable(
-illness_id int identity(1,1) primary key, 
+illness_id int identity(0,1) primary key, 
 illness_name varchar(50));
 
-create table IllnessSymptomsTable(illsymp_id int identity(1,1) primary key, 
+create table IllnessSymptomsTable(illsymp_id int identity(0,1) primary key, 
 illness_id int foreign key references IllnessTable(illness_id),
 symptom_id int foreign key references SymptomsTable(symptom_id));
 
