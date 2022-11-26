@@ -8,15 +8,37 @@ using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Collections;
 using System.Diagnostics.Metrics;
+using System.Windows.Forms;
 
 namespace DiagnosisPrognosis
 {
     internal class SQLCommands
     {
+
+        //Opens an OpenFileDialog that looks for the Database's path string
+        public static string getDatabaseLocation()
+        {
+            bool v = true;
+            OpenFileDialog ofd = new OpenFileDialog();
+            while (v)
+            {               
+                DialogResult result = ofd.ShowDialog(); // Show the dialog.
+                if (result == DialogResult.OK) // Test result.
+                {
+                    v = false;
+                }
+                else
+                {
+                    MessageBox.Show("Please select the Database");
+                }
+            }
+            return ofd.FileName;
+        }
+
         //Absolute Path
         //static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;Integrated Security=True;AttachDbFilename=B:\Programming\Replay\DiagnosisPrognosis\bin\Debug\net6.0-windows\DB\IllnessDB.mdf;";
-        
-        //Relative Path, Doesn't Work
+
+        //Relative Path, works!
         static string betaString = @"Data Source=(LocalDB)\MSSQLLocalDB;Integrated Security=True;AttachDbFilename=";
         static string connectionString = betaString + LandingForm.DatabasePath;
 

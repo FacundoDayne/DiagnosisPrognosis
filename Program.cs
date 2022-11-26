@@ -2,14 +2,13 @@ namespace DiagnosisPrognosis
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
+        //String to hold the path to the file
+        public static string thisLocation = System.Windows.Forms.Application.StartupPath;
+
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+
             ApplicationConfiguration.Initialize();
             Application.Run(new LandingForm());
         }
