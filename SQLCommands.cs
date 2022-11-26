@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Diagnostics.Metrics;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace DiagnosisPrognosis
 {
@@ -87,18 +88,21 @@ namespace DiagnosisPrognosis
                 {
                     currentSymptom = symptomArray[counter];
                     SqlCommand findIllnessViaID = new SqlCommand(
-                   "select i.illness_name as 'Illness Name', " +
-                   "s.symptom_name as 'Symptom Name'" +
-                   "from IllnessTable i" +
-                   "inner join SymptomsTable s" +
-                   "on i.symptom_id = s.symptom_id" +
-                   "where s.symptom_name = @symptom_name;", sqlConne);
+                    "select " +
+                    "i.illness_id as 'Illness ID', " +
+                    "i.illness_name as 'Illness Name', " +
+                    "s.symptom_name as 'Symptom Name' " +
+                    "from IllnessTable i " +
+                    "inner join SymptomsTable s " +
+                    "on i.symptom_id = s.symptom_id " +
+                    "where s.symptom_name = '@symptom_name'", sqlConne);
                     findIllnessViaID.Parameters.AddWithValue("@symptom_name", currentSymptom);
 
                     SqlDataReader reader = findIllnessViaID.ExecuteReader();
                     while (reader.Read())
                     {
                         MatchedIllness illness = new MatchedIllness(
+                        (string)reader["Illness ID"],
                         (string)reader["Symptom Name"],
                         (string)reader["Illness Name"]);
                         mi.Add(illness);
