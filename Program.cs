@@ -13,4 +13,10 @@ namespace DiagnosisPrognosis
             Application.Run(new LandingForm());
         }
     }
+
+    //TO DO MAKE THIS INTO AN INTERFACE SO THAT IT COMPLIES WITH OPEN CLOSE PRINCIPLE
+    public static class SymptomQueue
+    {
+        public static Queue<string> SymptomList = new Queue<string>();
+    }
 }

@@ -63,7 +63,7 @@ namespace DiagnosisPrognosis
         }
 
         List<string> symptomArray = new List<string>();
-        List<MatchIllness> getIllnesses(List<string> symptomArray)
+        public static List<MatchIllness> getIllnesses(List<string> symptomArray)
         {
             int sCounter = symptomArray.Count;
             List<MatchIllness> mi = new List<MatchIllness>();
@@ -71,7 +71,7 @@ namespace DiagnosisPrognosis
             using (SqlConnection sqlConne = new SqlConnection(connectionString))
             {
                 sqlConne.Open();
-                for (int counter = 0; counter < sCounter + 1; counter++)
+                for (int counter = 0; counter < sCounter; counter++)
                 {
                     currentSymptom = symptomArray[counter];
                     SqlCommand findIllnessViaID = new SqlCommand(
