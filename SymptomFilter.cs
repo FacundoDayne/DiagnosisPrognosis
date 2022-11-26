@@ -5,21 +5,23 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace sepulung
+namespace DiagnosisPrognosis
 {
-    internal class Program
+
+    internal class SymptomFilter
     {
         Handler handler;
-        public Program()
+        public SymptomFilter()
         {
             handler = new Handler();
         }
-
-        static void Main(string[] args)
+        //not gonna touch this much, just made sure theres no conflicts with the rest of the program
+        //just fix whatever you need afterwards tyvm
+        static void symptomFilterMain(string[] args)
         {
-            Program pr = new Program();
+            SymptomFilter symptomFilter = new SymptomFilter();
             Console.WriteLine("\nAll illnesses");
-            foreach (Illness x in pr.handler.getAllIllness().ToArray())
+            foreach (Illness x in symptomFilter.handler.getAllIllness().ToArray())
             {
                 Console.WriteLine(x.illnessID + " - " + x.illnessName);
                 foreach (Symptom y in x.getAllSymptom().ToArray())
@@ -29,22 +31,22 @@ namespace sepulung
             }
 
             Console.WriteLine("\nAll Symptoms");
-            foreach (Symptom x in pr.handler.getAllSymptom().ToArray())
+            foreach (Symptom x in symptomFilter.handler.getAllSymptom().ToArray())
             {
                 Console.WriteLine(x.symptomID + " - " + x.symptomName);
             }
 
             Console.WriteLine("Type symptom id: ");
-            pr.addGivenSymptom();
+            symptomFilter.addGivenSymptom();
 
             Console.WriteLine("\nAll given Symptoms");
-            foreach (Symptom x in pr.handler.getAllGivenSymptoms().ToArray())
+            foreach (Symptom x in symptomFilter.handler.getAllGivenSymptoms().ToArray())
             {
                 Console.WriteLine(x.symptomID + " - " + x.symptomName);
             }
 
-            pr.handler.checkForMatch();
-            pr.handler.getMatchedIllnesses();
+            symptomFilter.handler.checkForMatch();
+            symptomFilter.handler.getMatchedIllnesses();
 
             /* END */
             Console.ReadKey(); /* END */
@@ -346,7 +348,6 @@ namespace sepulung
         {
             MatchSymptoms = new List<Symptom>();
         }
-
         public MatchIllness(int illnessID, string illnessName, List<Symptom> matchedSymptoms, Symptom newSymptom)
             : base(illnessID, illnessName, matchedSymptoms)
         {

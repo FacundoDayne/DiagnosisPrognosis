@@ -63,23 +63,10 @@ namespace DiagnosisPrognosis
         }
 
         List<string> symptomArray = new List<string>();
-        public class MatchedIllness
-        {
-            private string Illness_Name;
-            private ArrayList Symptom_Name = new ArrayList();
-            public MatchedIllness(string Illness_Name, string Symptom_Name)
-            {
-                this.Illness_Name = Illness_Name;
-                this.Symptom_Name.Add(Symptom_Name);
-            }
-            public string getIllnessName(){return Illness_Name;}
-            public ArrayList getSymptomName() { return Symptom_Name; }
-        }
-
-        List<MatchedIllness> getIllnesses(List<string> symptomArray)
+        List<MatchIllness> getIllnesses(List<string> symptomArray)
         {
             int sCounter = symptomArray.Count;
-            List<MatchedIllness> mi = new List<MatchedIllness>();
+            List<MatchIllness> mi = new List<MatchIllness>();
             string currentSymptom;
             using (SqlConnection sqlConne = new SqlConnection(connectionString))
             {
@@ -101,10 +88,12 @@ namespace DiagnosisPrognosis
                     SqlDataReader reader = findIllnessViaID.ExecuteReader();
                     while (reader.Read())
                     {
-                        MatchedIllness illness = new MatchedIllness(
-                        (string)reader["Illness ID"],
-                        (string)reader["Symptom Name"],
-                        (string)reader["Illness Name"]);
+                        List<Symptom> sus = new List<Symptom>();
+                        sus.Add(new Symptom((int)reader["Symptom ID"], (string)reader["Symptom Name"]));
+                        MatchIllness illness = new MatchIllness(
+                        (int)reader["Illness ID"], 
+                        (string)reader["Illness Name"], 
+                        sus);
                         mi.Add(illness);
                     }
                     sqlConne.Close();

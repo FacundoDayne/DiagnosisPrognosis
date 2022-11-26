@@ -1,6 +1,7 @@
 ﻿select 
 i.illness_id as 'Illness ID',
 i.illness_name as 'Illness Name',
+s.symptom_id as 'Symptom ID',
 s.symptom_name as 'Symptom Name'
 from IllnessTable i
 inner join SymptomsTable s
