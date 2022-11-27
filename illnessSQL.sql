@@ -27,21 +27,29 @@ select * from SymptomsTable;
 select * from IllnessTable;
 select * from IllnessSymptomsTable;
 
-select symptom_name from SymptomsTable where symptom_id = 1 ;
 
-select 
-i.illness_name as 'Illness Name', 
-s.symptom_name as 'Symptom Name'
+-- Query to get all illness - symptoms relations
+select c.illness_name, b.symptom_name 
+from IllnessSymptomsTable a 
+INNER JOIN SymptomsTable b ON a.symptom_id = b.symptom_id 
+INNER JOIN IllnessTable c ON a.illness_id = c.illness_id;
 
-from IllnessTable i
-inner join SymptomsTable s 
-on i.symptom_id = s.symptom_id
---where i.illness_name = 'Cold';
-where s.symptom_name = 'Cough';
+-- Query to get an illlness' symptoms
+select a.illness_name, c.symptom_name 
+from IllnessTable a 
+inner join IllnessSymptomsTable b on b.illness_id = a.illness_id 
+inner join SymptomsTable c on b.symptom_id = c.symptom_id 
+WHERE a.illness_id = 0;
 
-sp_helptext findSymptomViaID
+-- Query to get all illnesses with specific symptoms
+select a.symptom_name, c.illness_name 
+from SymptomsTable a 
+inner join IllnessSymptomsTable b on b.symptom_id = a.symptom_id 
+inner join IllnessTable c on b.illness_id = c.illness_id 
+WHERE a.symptom_id = 0;
 
-declare @symptom_id as  int  
-set @symptom_id = 1
- select symptom_name  
- from SymptomsTable where symptom_id = @symptom_id
+-- Query to get number of symptoms each illness have
+select a.illness_name, COUNT(b.symptom_id) as 'num of symptoms' 
+from IllnessTable a 
+inner join IllnessSymptomsTable b on a.illness_id = b.illness_id 
+group by illness_name;

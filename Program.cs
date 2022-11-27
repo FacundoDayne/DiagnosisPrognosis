@@ -6,7 +6,7 @@ namespace DiagnosisPrognosis
         public static string thisLocation = System.Windows.Forms.Application.StartupPath;
 
         [STAThread]
-        static void Main()
+        public static void Main(String[] args)
         {
 
             ApplicationConfiguration.Initialize();
