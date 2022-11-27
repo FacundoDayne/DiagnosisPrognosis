@@ -42,7 +42,7 @@ namespace DiagnosisPrognosis
         //Relative Path, works!
         static string betaString = @"Data Source=(LocalDB)\MSSQLLocalDB;Integrated Security=True;AttachDbFilename=";
         static string connectionString = betaString + LandingForm.DatabasePath;
-
+        /*
         public static string getSymptom(int ID)
         {
             using (SqlConnection sqlConne = new SqlConnection(connectionString))
@@ -61,7 +61,8 @@ namespace DiagnosisPrognosis
                 return symptom;
             }
         }
-
+        */
+        /*
         List<string> symptomArray = new List<string>();
         public static List<MatchIllness> getIllnesses(List<string> symptomArray)
         {
@@ -100,6 +101,186 @@ namespace DiagnosisPrognosis
                 }
             }
             return mi;
+        }
+        */
+        
+        List<Illness> Illnesses = new List<Illness>();
+
+        public List<Illness> GetIllness(List<Symptom> symptoms)
+        {
+            List<Illness> MatchIllnesses = new List<Illness>();
+            using (SqlConnection sqlConne = new SqlConnection(connectionString))
+            {
+                // ** opens sql connection ** //
+                sqlConne.Open();
+
+                // ** Loops through all given symptoms
+                foreach (Symptom x in symptoms)
+                {
+
+                    // ** Retrieves table of illnesses that match the current symptom ** //
+
+                    SqlCommand findIllnessViaID = new SqlCommand(
+                        "select c.illness_id as 'illness id', c.illness_name as 'illness name'," +
+                        "a.symptom_name as 'symptom name', a.symptom_id as 'symptom id'" +
+                        "from SymptomsTable a" +
+                        "inner join IllnessSymptomsTable b on b.symptom_id = a.symptom_id" +
+                        "inner join IllnessTable c on b.illness_id = c.illness_id" +
+                        "WHERE a.symptom_id = @symptomID;"
+                        , sqlConne
+                    );
+
+                    findIllnessViaID.Parameters.AddWithValue("@symptomID", x.symptomID);
+                    SqlDataReader reader = findIllnessViaID.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        // ** Check if the illnesses list is empty ** //
+                        // ** If it is empty, add a new illness ** //
+                        if (MatchIllnesses.Count == 0)
+                        {
+                            MatchIllnesses.Add(new Illness((int)reader["illness id"], (string)reader["illness name"], x));
+                        } 
+                        
+                        // ** If it is not empty, check if the current illness exists ** //
+
+                        else
+                        {
+
+                            // ** Following variables check if there is a match ** //
+                            bool exists = false;
+
+                            // ** loops through the list of illnesses ** //
+
+                            for (int loop = 0; loop < MatchIllnesses.Count; loop++)
+                            {
+
+                                // ** Checks if the current illness matches with the list's illnesses ** //
+                                // ** If true, give the existing illness the new symptom ** //
+
+                                if (MatchIllnesses[loop].illnessID == (int)reader["illness id"])
+                                {
+                                    exists = true;
+                                    MatchIllnesses[loop].AddMatchSymptoms(new Symptom((int)reader["symptom id"], (string)reader["symptom name"]));
+                                }
+                            }
+
+                            // ** If there are no match, add a new illness ** //
+
+                            if (exists == false)
+                            {
+                                MatchIllnesses.Add(new Illness((int)reader["illness id"], (string)reader["illness name"], x));
+                            } 
+                        }
+                    }
+                    
+                }
+                for (int ill = 0; ill < MatchIllnesses.Count; ill++)
+                {
+                    SqlCommand getIllnessSymptoms = new SqlCommand(
+                        "select c.symptom_name as 'symptom name', " +
+                        " c.symptom_id as 'symptom id'" +
+                        " from IllnessTable a" +
+                        " inner join IllnessSymptomsTable b on b.illness_id = a.illness_id" +
+                        " inner join SymptomsTable c on b.symptom_id = c.symptom_id" +
+                        " WHERE a.illness_id = @illnessID;"
+                        , sqlConne);
+
+                    getIllnessSymptoms.Parameters.AddWithValue("@illnessID", MatchIllnesses[ill].illnessID);
+                    SqlDataReader reader2 = getIllnessSymptoms.ExecuteReader();
+
+                    while (reader2.Read())
+                    {
+                        MatchIllnesses[ill].addSymptom(new Symptom((int)reader2["symptom id"], (string)reader2["symptom name"]));
+                    }
+                }
+            }
+            return MatchIllnesses;
+        }
+    }
+    internal class Symptom 
+    {
+        private int _symptomID;
+        private string _symptomName;
+
+        public int symptomID { get => _symptomID; set => _symptomID = value; }
+        public string symptomName { get => _symptomName; set => _symptomName = value; }
+
+        public Symptom(int symptomID, string symptomName)
+        {
+            _symptomID = symptomID;
+            _symptomName = symptomName;
+        }
+    }
+    internal class Illness
+    {
+        private int _illnessID;
+        private string _illnessName;
+        private List<Symptom> _symptoms;
+        private List<Symptom> _MatchSymptoms;
+
+        public int illnessID { get => _illnessID; set => _illnessID = value; }
+        //public string illnessName { get => _illnessName; set => _illnessName = value; }
+
+        public Illness(int illnessID, string illnessName, List<Symptom> matchedSymptoms)
+        {
+            _illnessID = illnessID;
+            _illnessName = illnessName;
+            _symptoms = new List<Symptom>(matchedSymptoms);
+        }
+
+        public Illness(int illnessID, string illnessName, Symptom initialMatch)
+        {
+            _illnessID = illnessID;
+            _illnessName = illnessName;
+            _symptoms = new List<Symptom>();
+            _MatchSymptoms = new List<Symptom>();
+            _MatchSymptoms.Add(initialMatch);
+        }
+
+        public List<Symptom> returnSymptoms()
+        {
+            return _symptoms;
+        }
+
+        public Symptom getSymptom(int index)
+        {
+            return _symptoms[index];
+        }
+
+        public List<Symptom> getAllSymptom()
+        {
+            return _symptoms;
+        }
+
+        public void addSymptom(Symptom symptom)
+        {
+            _symptoms.Add(symptom);
+        }
+
+        public int getNumOfSymptoms()
+        {
+            return _symptoms.Count;
+        }
+
+        public void AddMatchSymptoms(Symptom symptom)
+        {
+            _MatchSymptoms.Add(symptom);
+        }
+
+        public void AddMatchSymptoms(Symptom[] symptoms)
+        {
+            _MatchSymptoms.AddRange(symptoms);
+        }
+
+        public List<Symptom> getAllMatches()
+        {
+            return _MatchSymptoms;
+        }
+
+        public int getNumOfMatches()
+        {
+            return _MatchSymptoms.Count;
         }
     }
 }

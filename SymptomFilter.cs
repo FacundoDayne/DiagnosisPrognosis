@@ -9,7 +9,7 @@ namespace DiagnosisPrognosis
 {
 
     internal class SymptomFilter
-    {
+    {/*
         Handler handler;
         public SymptomFilter()
         {
@@ -48,8 +48,8 @@ namespace DiagnosisPrognosis
             symptomFilter.handler.checkForMatch();
             symptomFilter.handler.getMatchedIllnesses();
 
-            /* END */
-            Console.ReadKey(); /* END */
+            /* END
+            Console.ReadKey();  END
         }
 
         Regex rx = new Regex(@"([0-9])");
@@ -75,11 +75,11 @@ namespace DiagnosisPrognosis
             {
                 addGivenSymptom(Convert.ToInt32(input));
             }
-        }
+        }*/
     }
 
     public class Handler
-    {
+    {/*
         private List<Symptom> symptoms;
         private List<Illness> illness;
 
@@ -288,10 +288,10 @@ namespace DiagnosisPrognosis
                 }
             }
             Console.WriteLine("");
-        }
+        }*/
     }
-
-    public class Illness
+    /*
+    internal class Illness
     {
         private int _illnessID;
         private string _illnessName;
@@ -340,7 +340,7 @@ namespace DiagnosisPrognosis
         }
     }
 
-    public class MatchIllness : Illness
+    internal class MatchIllness : Illness
     {
         private List<Symptom> MatchSymptoms;
         public MatchIllness(int illnessID, string illnessName, List<Symptom> matchedSymptoms)
@@ -390,4 +390,5 @@ namespace DiagnosisPrognosis
             _symptomName = symptomName;
         }
     }
+    */
 }
