@@ -53,3 +53,18 @@ select a.illness_name, COUNT(b.symptom_id) as 'num of symptoms'
 from IllnessTable a 
 inner join IllnessSymptomsTable b on a.illness_id = b.illness_id 
 group by illness_name;
+
+
+
+-- Patient Info
+CREATE TABLE SexTable(sex_id tinyint primary key, sex_nname varchar(30));
+INSERT INTO SexTable values (0, 'Not Known'), (1, 'Male'),(2, 'Female'), (9, 'Not Applicable');
+
+CREATE TABLE CourseTable(course_id smallint identity(0,1) primary key, course_name varchar(64));
+INSERT INTO CourseTable values ('BS in Information Technology');
+
+CREATE TABLE PatientTable(patient_id int identity(0,1) primary key, patient_lastname varchar(30), patient_firstname varchar(30),
+		patient_middlename varchar(30), patient_age int, patient_sex tinyint foreign key references SexTable(sex_id),
+		patient_course smallint foreign key references CourseTable(course_id), patient_contactnumber varchar(13), patient_birthdate date,
+		patient_allergies bit, patient_consultation bit, patient_checkup bit, patient_medicalneeds bit);
+-- as per ISO/IEC 5218 standard, sex is designated as tintyint. 0 = not known, 1 = male, 2 = female, 9 = not applicable
