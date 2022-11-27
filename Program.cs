@@ -10,7 +10,7 @@ namespace DiagnosisPrognosis
         {
 
             ApplicationConfiguration.Initialize();
-            Application.Run(new LandingForm());
+            Application.Run(new Homepage());
         }
     }
 
