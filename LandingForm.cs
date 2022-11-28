@@ -54,11 +54,13 @@ namespace DiagnosisPrognosis
 
         private void button2_Click(object sender, EventArgs e)
         {
+            /*
             List<MatchIllness> matchIllnesses = SQLCommands.getIllnesses(SymptomQueue.SymptomList.ToList());
             foreach (MatchIllness obj in matchIllnesses)
             {
                 symptomList.Items.Add("Illness Name: {0}", obj.illnessName);
             }
+            */
         }
     }
 }
