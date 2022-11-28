@@ -194,11 +194,14 @@ namespace DiagnosisPrognosis
                         MatchIllnesses[ill].addSymptom(new Symptom((int)reader2["symptom id"], (string)reader2["symptom name"]));
                     }
                 }
+
+                sqlConne.Close();
             }
+
             return MatchIllnesses;
         }
     }
-    internal class Symptom 
+    public class Symptom 
     {
         private int _symptomID;
         private string _symptomName;
@@ -212,7 +215,7 @@ namespace DiagnosisPrognosis
             _symptomName = symptomName;
         }
     }
-    internal class Illness
+    public class Illness
     {
         private int _illnessID;
         private string _illnessName;
@@ -220,7 +223,7 @@ namespace DiagnosisPrognosis
         private List<Symptom> _MatchSymptoms;
 
         public int illnessID { get => _illnessID; set => _illnessID = value; }
-        //public string illnessName { get => _illnessName; set => _illnessName = value; }
+        public string illnessName { get => _illnessName; set => _illnessName = value; }
 
         public Illness(int illnessID, string illnessName, List<Symptom> matchedSymptoms)
         {
@@ -236,6 +239,28 @@ namespace DiagnosisPrognosis
             _symptoms = new List<Symptom>();
             _MatchSymptoms = new List<Symptom>();
             _MatchSymptoms.Add(initialMatch);
+        }
+
+        public Illness(int illnessID, string illnessName)
+        {
+            _illnessID = illnessID;
+            _illnessName = illnessName;
+        }
+
+        public Illness(MatchIllness old)
+        {
+            _illnessID = old.illnessID;
+            _illnessName = old.illnessName;
+            _symptoms = new List<Symptom>();
+            foreach (OldSymptom x in old.getAllSymptom())
+            {
+                _symptoms.Add(new Symptom(x.symptomID, x.symptomName));
+            }
+            _MatchSymptoms = new List<Symptom>();
+            foreach (OldSymptom x in old.getAllMatches())
+            {
+                _MatchSymptoms.Add(new Symptom(x.symptomID, x.symptomName));
+            }
         }
 
         public List<Symptom> returnSymptoms()

@@ -36,5 +36,11 @@ namespace DiagnosisPrognosis
         {
 
         }
+
+        private void btnNewPatient_Click(object sender, EventArgs e)
+        {
+            PatientForm ptFrm = new PatientForm();
+            ptFrm.ShowDialog();
+        }
     }
 }

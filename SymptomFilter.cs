@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 namespace DiagnosisPrognosis
 {
 
-    internal class SymptomFilter
-    {/*
+    public class SymptomFilter
+    {
         Handler handler;
         public SymptomFilter()
         {
@@ -21,17 +21,17 @@ namespace DiagnosisPrognosis
         {
             SymptomFilter symptomFilter = new SymptomFilter();
             Console.WriteLine("\nAll illnesses");
-            foreach (Illness x in symptomFilter.handler.getAllIllness().ToArray())
+            foreach (OldIllness x in symptomFilter.handler.getAllIllness().ToArray())
             {
                 Console.WriteLine(x.illnessID + " - " + x.illnessName);
-                foreach (Symptom y in x.getAllSymptom().ToArray())
+                foreach (OldSymptom y in x.getAllSymptom().ToArray())
                 {
                     Console.WriteLine("\t" + y.symptomID + " - " + y.symptomName);
                 }
             }
 
             Console.WriteLine("\nAll Symptoms");
-            foreach (Symptom x in symptomFilter.handler.getAllSymptom().ToArray())
+            foreach (OldSymptom x in symptomFilter.handler.getAllSymptom().ToArray())
             {
                 Console.WriteLine(x.symptomID + " - " + x.symptomName);
             }
@@ -40,7 +40,7 @@ namespace DiagnosisPrognosis
             symptomFilter.addGivenSymptom();
 
             Console.WriteLine("\nAll given Symptoms");
-            foreach (Symptom x in symptomFilter.handler.getAllGivenSymptoms().ToArray())
+            foreach (OldSymptom x in symptomFilter.handler.getAllGivenSymptoms().ToArray())
             {
                 Console.WriteLine(x.symptomID + " - " + x.symptomName);
             }
@@ -48,8 +48,8 @@ namespace DiagnosisPrognosis
             symptomFilter.handler.checkForMatch();
             symptomFilter.handler.getMatchedIllnesses();
 
-            /* END
-            Console.ReadKey();  END
+            
+            Console.ReadKey();
         }
 
         Regex rx = new Regex(@"([0-9])");
@@ -75,30 +75,33 @@ namespace DiagnosisPrognosis
             {
                 addGivenSymptom(Convert.ToInt32(input));
             }
-        }*/
+        }
     }
 
     public class Handler
-    {/*
-        private List<Symptom> symptoms;
-        private List<Illness> illness;
+    {
+        private List<OldSymptom> symptoms;
+        private List<OldIllness> illness;
 
-        private List<Symptom> givenSymptoms;
+        private List<OldSymptom> givenSymptoms;
         private List<MatchIllness> matchIllness;
 
         public Handler()
         {
-            symptoms = new List<Symptom>();
-            illness = new List<Illness>();
+            symptoms = new List<OldSymptom>();
+            illness = new List<OldIllness>();
             tempData();
 
 
-            givenSymptoms = new List<Symptom>();
+            givenSymptoms = new List<OldSymptom>();
             matchIllness = new List<MatchIllness>();
         }
 
         public void tempData()
         {
+            symptoms.Clear();
+            illness.Clear();
+
             addSymptoms("Cough"); // 0
             addSymptoms("Fever"); // 1
             addSymptoms("Runny Nose"); // 2
@@ -118,7 +121,7 @@ namespace DiagnosisPrognosis
             addSymptoms("Sneezing"); // 16
             addSymptoms("Post-nasal drip"); // 17
             addSymptoms("Watery eyes"); // 18
-            List<Symptom> tempSymptom = new List<Symptom>();
+            List<OldSymptom> tempSymptom = new List<OldSymptom>();
 
             tempSymptom.Add(symptoms[0]);
             tempSymptom.Add(symptoms[1]);
@@ -162,22 +165,22 @@ namespace DiagnosisPrognosis
 
         public void addSymptoms(string name)
         {
-            symptoms.Add(new Symptom(symptoms.Count, name));
+            symptoms.Add(new OldSymptom(symptoms.Count, name));
         }
 
-        public void addIllness(string name, List<Symptom> symptoms)
+        public void addIllness(string name, List<OldSymptom> symptoms)
         {
-            illness.Add(new Illness(illness.Count, name, symptoms));
+            illness.Add(new OldIllness(illness.Count, name, symptoms));
         }
 
-        public void addIllness(string name, Symptom[] symptoms)
+        public void addIllness(string name, OldSymptom[] symptoms)
         {
-            illness.Add(new Illness(illness.Count, name, symptoms));
+            illness.Add(new OldIllness(illness.Count, name, symptoms));
         }
 
-        public void addIllnessSymptom(int illnessID, Symptom symptom)
+        public void addIllnessSymptom(int illnessID, OldSymptom symptom)
         {
-            foreach (Illness x in illness.ToArray())
+            foreach (OldIllness x in illness.ToArray())
             {
                 if (x.illnessID == illnessID)
                 {
@@ -187,36 +190,36 @@ namespace DiagnosisPrognosis
             }
         }
 
-        public Illness getIllness(int index)
+        public OldIllness getIllness(int index)
         {
             return illness[index];
         }
 
-        public List<Illness> getAllIllness()
+        public List<OldIllness> getAllIllness()
         {
             return illness;
         }
 
-        public Symptom getSymptom(int index)
+        public OldSymptom getSymptom(int index)
         {
             return symptoms[index];
         }
 
-        public List<Symptom> getAllSymptom()
+        public List<OldSymptom> getAllSymptom()
         {
             return symptoms;
         }
 
 
 
-        public void addGivenSymptom(Symptom symptom)
+        public void addGivenSymptom(OldSymptom symptom)
         {
             givenSymptoms.Add(symptom);
         }
 
         public void addGivenSymptom(int symptom)
         {
-            foreach (Symptom x in symptoms.ToArray())
+            foreach (OldSymptom x in symptoms.ToArray())
             {
                 if (x.symptomID == symptom)
                 {
@@ -225,20 +228,20 @@ namespace DiagnosisPrognosis
             }
         }
 
-        public List<Symptom> getAllGivenSymptoms()
+        public List<OldSymptom> getAllGivenSymptoms()
         {
             return givenSymptoms;
         }
 
         public void checkForMatch()
         {
-            foreach (Symptom x in givenSymptoms.ToArray())
+            foreach (OldSymptom x in givenSymptoms.ToArray())
             {
                 //Console.WriteLine("A");
-                foreach (Illness y in illness.ToArray())
+                foreach (OldIllness y in illness.ToArray())
                 {
                     //Console.WriteLine("B");
-                    foreach (Symptom z in y.getAllSymptom())
+                    foreach (OldSymptom z in y.getAllSymptom())
                     {
                         //Console.WriteLine("C");
                         if (x.symptomID == z.symptomID)
@@ -282,54 +285,66 @@ namespace DiagnosisPrognosis
             foreach (MatchIllness x in matchIllness)
             {
                 Console.WriteLine(x.illnessID + "\t" + x.illnessName + "\t" + x.getNumOfMatches() + "/" + x.getNumOfSymptoms());
-                foreach (Symptom y in x.getAllMatches())
+                foreach (OldSymptom y in x.getAllMatches())
                 {
                     Console.WriteLine("\t" + y.symptomID + " - " + y.symptomName);
                 }
             }
             Console.WriteLine("");
-        }*/
+        }
+        public List<Illness> getMatchedIllnessesX()
+        {
+            List<Illness> matches = new List<Illness>();
+            //Console.WriteLine("Matched illnesses:");
+            foreach (MatchIllness x in matchIllness)
+            {
+                matches.Add(new Illness(x));
+            }
+
+            //Console.WriteLine("");
+            return matches;
+        }
     }
-    /*
-    internal class Illness
+    
+    public class OldIllness
     {
         private int _illnessID;
         private string _illnessName;
-        private List<Symptom> _symptoms;
+        private List<OldSymptom> _symptoms;
 
         public int illnessID { get => _illnessID; set => _illnessID = value; }
         public string illnessName { get => _illnessName; set => _illnessName = value; }
 
-        public Illness(int illnessID, string illnessName, List<Symptom> matchedSymptoms)
+        public OldIllness(int illnessID, string illnessName, List<OldSymptom> matchedSymptoms)
         {
             _illnessID = illnessID;
             _illnessName = illnessName;
-            _symptoms = new List<Symptom>(matchedSymptoms);
+            _symptoms = new List<OldSymptom>(matchedSymptoms);
         }
 
-        public Illness(int illnessID, string illnessName, Symptom[] matchedSymptoms)
+        public OldIllness(int illnessID, string illnessName, OldSymptom[] matchedSymptoms)
         {
             _illnessID = illnessID;
             _illnessName = illnessName;
-            _symptoms = new List<Symptom>(matchedSymptoms);
+            _symptoms = new List<OldSymptom>(matchedSymptoms);
         }
 
-        public List<Symptom> returnSymptoms()
+        public List<OldSymptom> returnSymptoms()
         {
             return _symptoms;
         }
 
-        public Symptom getSymptom(int index)
+        public OldSymptom getSymptom(int index)
         {
             return _symptoms[index];
         }
 
-        public List<Symptom> getAllSymptom()
+        public List<OldSymptom> getAllSymptom()
         {
             return _symptoms;
         }
 
-        public void addSymptom(Symptom symptom)
+        public void addSymptom(OldSymptom symptom)
         {
             _symptoms.Add(symptom);
         }
@@ -340,32 +355,32 @@ namespace DiagnosisPrognosis
         }
     }
 
-    internal class MatchIllness : Illness
+    public class MatchIllness : OldIllness
     {
-        private List<Symptom> MatchSymptoms;
-        public MatchIllness(int illnessID, string illnessName, List<Symptom> matchedSymptoms)
+        private List<OldSymptom> MatchSymptoms;
+        public MatchIllness(int illnessID, string illnessName, List<OldSymptom> matchedSymptoms)
             : base(illnessID, illnessName, matchedSymptoms)
         {
-            MatchSymptoms = new List<Symptom>();
+            MatchSymptoms = new List<OldSymptom>();
         }
-        public MatchIllness(int illnessID, string illnessName, List<Symptom> matchedSymptoms, Symptom newSymptom)
+        public MatchIllness(int illnessID, string illnessName, List<OldSymptom> matchedSymptoms, OldSymptom newSymptom)
             : base(illnessID, illnessName, matchedSymptoms)
         {
-            MatchSymptoms = new List<Symptom>();
+            MatchSymptoms = new List<OldSymptom>();
             MatchSymptoms.Add(newSymptom);
         }
 
-        public void AddSymptoms(Symptom symptom)
+        public void AddSymptoms(OldSymptom symptom)
         {
             MatchSymptoms.Add(symptom);
         }
 
-        public void AddSymptoms(Symptom[] symptoms)
+        public void AddSymptoms(OldSymptom[] symptoms)
         {
             MatchSymptoms.AddRange(symptoms);
         }
 
-        public List<Symptom> getAllMatches()
+        public List<OldSymptom> getAllMatches()
         {
             return MatchSymptoms;
         }
@@ -376,7 +391,7 @@ namespace DiagnosisPrognosis
         }
     }
 
-    public class Symptom
+    public class OldSymptom
     {
         private int _symptomID;
         private string _symptomName;
@@ -384,11 +399,11 @@ namespace DiagnosisPrognosis
         public int symptomID { get => _symptomID; set => _symptomID = value; }
         public string symptomName { get => _symptomName; set => _symptomName = value; }
 
-        public Symptom(int symptomID, string symptomName)
+        public OldSymptom(int symptomID, string symptomName)
         {
             _symptomID = symptomID;
             _symptomName = symptomName;
         }
     }
-    */
+    
 }
