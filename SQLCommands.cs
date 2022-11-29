@@ -41,7 +41,7 @@ namespace DiagnosisPrognosis
 
         //Relative Path, works!
         static string betaString = @"Data Source=(LocalDB)\MSSQLLocalDB;Integrated Security=True;AttachDbFilename=";
-        static string connectionString = betaString + LandingForm.DatabasePath;
+        static string connectionString = betaString + Homepage.DatabasePath;
         /*
         public static string getSymptom(int ID)
         {
