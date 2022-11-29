@@ -2,16 +2,21 @@ namespace DiagnosisPrognosis
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
+        //String to hold the path to the file
+        public static string thisLocation = System.Windows.Forms.Application.StartupPath;
+
         [STAThread]
-        static void Main()
+        public static void Main(String[] args)
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+
             ApplicationConfiguration.Initialize();
-            Application.Run(new LandingForm());
+            Application.Run(new Homepage());
         }
+    }
+
+    //TO DO MAKE THIS INTO AN INTERFACE SO THAT IT COMPLIES WITH OPEN CLOSE PRINCIPLE
+    public static class SymptomQueue
+    {
+        public static Queue<string> SymptomList = new Queue<string>();
     }
 }

@@ -1,21 +1,29 @@
-using System.Collections;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
-using System.IO;
-using System.Text;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DiagnosisPrognosis
 {
-    public partial class LandingForm : Form
+    public partial class Homepage : Form
     {
         //Holds the string of the path to the location of the Database
         public static string DatabasePath;
-        public LandingForm()
+        public Homepage()
         {
             InitializeComponent();
+            addPatientForm1.Visible = false;
+            diagnosisUC1.Visible = false;
+            inventoryUC1.Visible = false;
             //Code to see whether or not the DatabaseLocation.txt File exists, this file holds the file path of the DataBase
             if (Directory.GetFiles(Program.thisLocation, "DatabaseLocation.txt", SearchOption.AllDirectories).FirstOrDefault() == null)
             {
+                MessageBox.Show("Please select the location of the database", "No Database Location Found");
                 //if the DataBaseLocation file is not found, creates one and writes inside it
                 FileStream fs = new FileStream(Path.Combine(Program.thisLocation, "DatabaseLocation.txt"), FileMode.CreateNew);
                 using (fs)
@@ -30,37 +38,47 @@ namespace DiagnosisPrognosis
                 //if the DataBaseLocation file is found, reads the information
                 FileStream fs = new FileStream(Path.Combine(Program.thisLocation, "DatabaseLocation.txt"), FileMode.Open, FileAccess.Read);
                 using var sr = new StreamReader(fs);
-                if (sr.ReadLine() != null){DatabasePath = sr.ReadLine();}
+                if (sr.ReadLine() != null) { DatabasePath = sr.ReadLine(); }
                 MessageBox.Show("DatabaseLocation Loaded", "Database Location Found");
 
             }
-        }
-                
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //this is basically to check whether or not the database works
-            SymptomQueue.SymptomList.Enqueue(comboBox1.SelectedItem.ToString());
-            DisplaySymptomsList(SymptomQueue.SymptomList);
+
         }
 
-        void DisplaySymptomsList(IEnumerable Listy)
+        private void btnPatientInfo_Click(object sender, EventArgs e)
         {
-            symptomList.Items.Clear();
-            foreach(Object obj in Listy)
-            {
-                symptomList.Items.Add(obj.ToString());
-            }
+            addPatientForm1.Visible = true;
+            diagnosisUC1.Visible = false;
+            inventoryUC1.Visible = false; 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnDiagnosis_Click(object sender, EventArgs e)
         {
-            /*
-            List<MatchIllness> matchIllnesses = SQLCommands.getIllnesses(SymptomQueue.SymptomList.ToList());
-            foreach (MatchIllness obj in matchIllnesses)
-            {
-                symptomList.Items.Add("Illness Name: {0}", obj.illnessName);
-            }
-            */
+            diagnosisUC1.Visible = true;
+            addPatientForm1.Visible = false;
+            inventoryUC1.Visible = false;
+        }
+
+        private void btnInventory_Click(object sender, EventArgs e)
+        {
+            inventoryUC1.Visible = true;
+            addPatientForm1.Visible = false;
+            diagnosisUC1.Visible = false;
+
+        }
+
+        private void pbClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+
+        }
+
+        private void pbSTIlogo_Click(object sender, EventArgs e)
+        {
+            pbSTICampus.Visible = true;
+            addPatientForm1.Visible = false;
+            diagnosisUC1.Visible = false;
+            inventoryUC1.Visible = false;
         }
     }
 }
