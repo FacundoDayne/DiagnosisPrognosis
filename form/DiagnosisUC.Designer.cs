@@ -47,6 +47,8 @@ namespace DiagnosisPrognosis
             this.dgDiagnosis = new System.Windows.Forms.DataGridView();
             this.listView1 = new System.Windows.Forms.ListView();
             this.listView2 = new System.Windows.Forms.ListView();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnClear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgDiagnosis)).BeginInit();
             this.SuspendLayout();
             // 
@@ -126,6 +128,7 @@ namespace DiagnosisPrognosis
             this.cmbDiagPatient.Name = "cmbDiagPatient";
             this.cmbDiagPatient.Size = new System.Drawing.Size(345, 27);
             this.cmbDiagPatient.TabIndex = 19;
+            this.cmbDiagPatient.SelectionChangeCommitted += new System.EventHandler(this.cmbDiagPatient_SelectionChangeCommitted);
             // 
             // label5
             // 
@@ -197,7 +200,7 @@ namespace DiagnosisPrognosis
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label11.Location = new System.Drawing.Point(448, 57);
+            this.label11.Location = new System.Drawing.Point(628, 60);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(84, 19);
@@ -212,41 +215,71 @@ namespace DiagnosisPrognosis
             this.btnSubmitDiagnosis.Name = "btnSubmitDiagnosis";
             this.btnSubmitDiagnosis.Size = new System.Drawing.Size(88, 35);
             this.btnSubmitDiagnosis.TabIndex = 28;
-            this.btnSubmitDiagnosis.Text = "Submit";
+            this.btnSubmitDiagnosis.Text = "Diagnose";
             this.btnSubmitDiagnosis.UseVisualStyleBackColor = true;
             this.btnSubmitDiagnosis.Click += new System.EventHandler(this.btnSubmitDiagnosis_Click);
             // 
             // dgDiagnosis
             // 
+            this.dgDiagnosis.AllowUserToAddRows = false;
+            this.dgDiagnosis.AllowUserToDeleteRows = false;
+            this.dgDiagnosis.AllowUserToOrderColumns = true;
             this.dgDiagnosis.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgDiagnosis.Location = new System.Drawing.Point(448, 91);
+            this.dgDiagnosis.Location = new System.Drawing.Point(628, 91);
             this.dgDiagnosis.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgDiagnosis.Name = "dgDiagnosis";
-            this.dgDiagnosis.Size = new System.Drawing.Size(457, 41);
+            this.dgDiagnosis.ReadOnly = true;
+            this.dgDiagnosis.Size = new System.Drawing.Size(277, 350);
             this.dgDiagnosis.TabIndex = 26;
             // 
             // listView1
             // 
-            this.listView1.Location = new System.Drawing.Point(448, 147);
+            this.listView1.Location = new System.Drawing.Point(448, 91);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(221, 294);
+            this.listView1.Size = new System.Drawing.Size(160, 350);
             this.listView1.TabIndex = 30;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.List;
             // 
             // listView2
             // 
-            this.listView2.Location = new System.Drawing.Point(699, 147);
+            this.listView2.Location = new System.Drawing.Point(676, 358);
             this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(206, 294);
+            this.listView2.Size = new System.Drawing.Size(229, 83);
             this.listView2.TabIndex = 31;
             this.listView2.UseCompatibleStateImageBehavior = false;
             this.listView2.View = System.Windows.Forms.View.List;
+            this.listView2.Visible = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(448, 60);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(85, 19);
+            this.label7.TabIndex = 32;
+            this.label7.Text = "Symptoms";
+            // 
+            // btnClear
+            // 
+            this.btnClear.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnClear.Location = new System.Drawing.Point(676, 452);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(88, 35);
+            this.btnClear.TabIndex = 33;
+            this.btnClear.Text = "Clear All";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // DiagnosisUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnClear);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.listView2);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.label11);
@@ -294,5 +327,7 @@ namespace DiagnosisPrognosis
         private System.Windows.Forms.DataGridView dgDiagnosis;
         private ListView listView1;
         private ListView listView2;
+        private Label label7;
+        private Button btnClear;
     }
 }

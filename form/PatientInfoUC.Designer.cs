@@ -113,9 +113,9 @@ namespace DiagnosisPrognosis
             this.label6.Location = new System.Drawing.Point(28, 317);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(66, 19);
+            this.label6.Size = new System.Drawing.Size(37, 19);
             this.label6.TabIndex = 4;
-            this.label6.Text = "Gender:";
+            this.label6.Text = "Sex:";
             // 
             // cmbSearchPatient
             // 
@@ -126,6 +126,7 @@ namespace DiagnosisPrognosis
             this.cmbSearchPatient.Name = "cmbSearchPatient";
             this.cmbSearchPatient.Size = new System.Drawing.Size(345, 27);
             this.cmbSearchPatient.TabIndex = 6;
+            this.cmbSearchPatient.SelectionChangeCommitted += new System.EventHandler(this.cmbSearchPatient_SelectionChangeCommitted);
             // 
             // lblPatient
             // 
@@ -185,6 +186,7 @@ namespace DiagnosisPrognosis
             this.btnAddSymp.TabIndex = 12;
             this.btnAddSymp.Text = "ADD";
             this.btnAddSymp.UseVisualStyleBackColor = true;
+            this.btnAddSymp.Visible = false;
             // 
             // dgPatients
             // 
@@ -216,6 +218,7 @@ namespace DiagnosisPrognosis
             this.btnDeletePatient.TabIndex = 16;
             this.btnDeletePatient.Text = "DELETE";
             this.btnDeletePatient.UseVisualStyleBackColor = true;
+            this.btnDeletePatient.Visible = false;
             // 
             // label11
             // 

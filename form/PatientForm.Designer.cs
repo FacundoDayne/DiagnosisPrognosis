@@ -58,6 +58,8 @@ namespace DiagnosisPrognosis
             this.label11 = new System.Windows.Forms.Label();
             this.radAllergyYes = new System.Windows.Forms.RadioButton();
             this.radAllergyNo = new System.Windows.Forms.RadioButton();
+            this.txtStudentNum = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.PanelCeiling.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSTIlogo)).BeginInit();
@@ -86,6 +88,7 @@ namespace DiagnosisPrognosis
             this.pbClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbClose.TabIndex = 2;
             this.pbClose.TabStop = false;
+            this.pbClose.Click += new System.EventHandler(this.pbClose_Click);
             // 
             // label1
             // 
@@ -379,11 +382,33 @@ namespace DiagnosisPrognosis
             this.radAllergyNo.Text = "No";
             this.radAllergyNo.UseVisualStyleBackColor = true;
             // 
+            // txtStudentNum
+            // 
+            this.txtStudentNum.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtStudentNum.Location = new System.Drawing.Point(401, 508);
+            this.txtStudentNum.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtStudentNum.Name = "txtStudentNum";
+            this.txtStudentNum.Size = new System.Drawing.Size(288, 32);
+            this.txtStudentNum.TabIndex = 27;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label12.Location = new System.Drawing.Point(401, 478);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(179, 25);
+            this.label12.TabIndex = 28;
+            this.label12.Text = "Student Number:";
+            // 
             // PatientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1138, 629);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.txtStudentNum);
             this.Controls.Add(this.radAllergyNo);
             this.Controls.Add(this.radAllergyYes);
             this.Controls.Add(this.label11);
@@ -415,6 +440,7 @@ namespace DiagnosisPrognosis
             this.Name = "PatientForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PatientForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PatientForm_FormClosed);
             this.PanelCeiling.ResumeLayout(false);
             this.PanelCeiling.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClose)).EndInit();
@@ -455,5 +481,7 @@ namespace DiagnosisPrognosis
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.RadioButton radAllergyYes;
         private System.Windows.Forms.RadioButton radAllergyNo;
+        private TextBox txtStudentNum;
+        private Label label12;
     }
 }

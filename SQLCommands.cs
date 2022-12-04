@@ -13,7 +13,7 @@ using System.Reflection;
 
 namespace DiagnosisPrognosis
 {
-    internal class SQLCommands
+    public class SQLCommands
     {
 
         //Opens an OpenFileDialog that looks for the Database's path string
@@ -106,98 +106,110 @@ namespace DiagnosisPrognosis
         
         List<Illness> Illnesses = new List<Illness>();
 
-        public List<Illness> GetIllness(List<Symptom> symptoms)
+        public static List<Illness> GetIllness(List<Symptom> symptoms)
         {
             List<Illness> MatchIllnesses = new List<Illness>();
-            using (SqlConnection sqlConne = new SqlConnection(connectionString))
+            try
             {
-                // ** opens sql connection ** //
-                sqlConne.Open();
-
-                // ** Loops through all given symptoms
-                foreach (Symptom x in symptoms)
+                form.Transfer.sconn.ConnectionString = @"Data Source=.\SQLEXPRESS;" +
+                                                "AttachDbFilename=" + form.Transfer.DatabasePath + "; " +
+                                                "Integrated Security=True; " +
+                                                "Connect Timeout=30; " +
+                                                "User Instance=True";
+                using (form.Transfer.sconn)
                 {
+                    // ** opens sql connection ** //
+                    form.Transfer.sconn.Open();
 
-                    // ** Retrieves table of illnesses that match the current symptom ** //
-
-                    SqlCommand findIllnessViaID = new SqlCommand(
-                        "select c.illness_id as 'illness id', c.illness_name as 'illness name'," +
-                        "a.symptom_name as 'symptom name', a.symptom_id as 'symptom id'" +
-                        "from SymptomsTable a" +
-                        "inner join IllnessSymptomsTable b on b.symptom_id = a.symptom_id" +
-                        "inner join IllnessTable c on b.illness_id = c.illness_id" +
-                        "WHERE a.symptom_id = @symptomID;"
-                        , sqlConne
-                    );
-
-                    findIllnessViaID.Parameters.AddWithValue("@symptomID", x.symptomID);
-                    SqlDataReader reader = findIllnessViaID.ExecuteReader();
-
-                    while (reader.Read())
+                    // ** Loops through all given symptoms
+                    foreach (Symptom x in symptoms)
                     {
-                        // ** Check if the illnesses list is empty ** //
-                        // ** If it is empty, add a new illness ** //
-                        if (MatchIllnesses.Count == 0)
+
+                        // ** Retrieves table of illnesses that match the current symptom ** //
+
+                        SqlCommand findIllnessViaID = new SqlCommand(
+                            "select c.illness_id as 'illness id', c.illness_name as 'illness name'," +
+                            " c.illness_virality as 'virality'," +
+                            " a.symptom_name as 'symptom name', a.symptom_id as 'symptom id'" +
+                            " from SymptomsTable a" +
+                            " inner join IllnessSymptomsTable b on b.symptom_id = a.symptom_id" +
+                            " inner join IllnessTable c on b.illness_id = c.illness_id" +
+                            " WHERE a.symptom_id = @symptomID;"
+                            , form.Transfer.sconn
+                        );
+
+                        findIllnessViaID.Parameters.AddWithValue("@symptomID", x.symptomID);
+                        SqlDataReader reader = findIllnessViaID.ExecuteReader();
+
+                        while (reader.Read())
                         {
-                            MatchIllnesses.Add(new Illness((int)reader["illness id"], (string)reader["illness name"], x));
-                        } 
-                        
-                        // ** If it is not empty, check if the current illness exists ** //
-
-                        else
-                        {
-
-                            // ** Following variables check if there is a match ** //
-                            bool exists = false;
-
-                            // ** loops through the list of illnesses ** //
-
-                            for (int loop = 0; loop < MatchIllnesses.Count; loop++)
+                            // ** Check if the illnesses list is empty ** //
+                            // ** If it is empty, add a new illness ** //
+                            if (MatchIllnesses.Count == 0)
                             {
-
-                                // ** Checks if the current illness matches with the list's illnesses ** //
-                                // ** If true, give the existing illness the new symptom ** //
-
-                                if (MatchIllnesses[loop].illnessID == (int)reader["illness id"])
-                                {
-                                    exists = true;
-                                    MatchIllnesses[loop].AddMatchSymptoms(new Symptom((int)reader["symptom id"], (string)reader["symptom name"]));
-                                }
+                                MatchIllnesses.Add(new Illness((int)reader["illness id"], (string)reader["illness name"], x, (int)reader["virality"]));
                             }
 
-                            // ** If there are no match, add a new illness ** //
+                            // ** If it is not empty, check if the current illness exists ** //
 
-                            if (exists == false)
+                            else
                             {
-                                MatchIllnesses.Add(new Illness((int)reader["illness id"], (string)reader["illness name"], x));
-                            } 
+
+                                // ** Following variables check if there is a match ** //
+                                bool exists = false;
+
+                                // ** loops through the list of illnesses ** //
+
+                                for (int loop = 0; loop < MatchIllnesses.Count; loop++)
+                                {
+
+                                    // ** Checks if the current illness matches with the list's illnesses ** //
+                                    // ** If true, give the existing illness the new symptom ** //
+
+                                    if (MatchIllnesses[loop].illnessID == (int)reader["illness id"])
+                                    {
+                                        exists = true;
+                                        MatchIllnesses[loop].AddMatchSymptoms(new Symptom((int)reader["symptom id"], (string)reader["symptom name"]));
+                                    }
+                                }
+
+                                // ** If there are no match, add a new illness ** //
+
+                                if (exists == false)
+                                {
+                                    MatchIllnesses.Add(new Illness((int)reader["illness id"], (string)reader["illness name"], x, (int)reader["virality"]));
+                                }
+                            }
                         }
+                        reader.Close();
                     }
-                    
-                }
-                for (int ill = 0; ill < MatchIllnesses.Count; ill++)
-                {
-                    SqlCommand getIllnessSymptoms = new SqlCommand(
-                        "select c.symptom_name as 'symptom name', " +
-                        " c.symptom_id as 'symptom id'" +
-                        " from IllnessTable a" +
-                        " inner join IllnessSymptomsTable b on b.illness_id = a.illness_id" +
-                        " inner join SymptomsTable c on b.symptom_id = c.symptom_id" +
-                        " WHERE a.illness_id = @illnessID;"
-                        , sqlConne);
-
-                    getIllnessSymptoms.Parameters.AddWithValue("@illnessID", MatchIllnesses[ill].illnessID);
-                    SqlDataReader reader2 = getIllnessSymptoms.ExecuteReader();
-
-                    while (reader2.Read())
+                    for (int ill = 0; ill < MatchIllnesses.Count; ill++)
                     {
-                        MatchIllnesses[ill].addSymptom(new Symptom((int)reader2["symptom id"], (string)reader2["symptom name"]));
+                        SqlCommand getIllnessSymptoms = new SqlCommand(
+                            "select c.symptom_name as 'symptom name', " +
+                            " c.symptom_id as 'symptom id'" +
+                            " from IllnessTable a" +
+                            " inner join IllnessSymptomsTable b on b.illness_id = a.illness_id" +
+                            " inner join SymptomsTable c on b.symptom_id = c.symptom_id" +
+                            " WHERE a.illness_id = @illnessID;"
+                            , form.Transfer.sconn);
+
+                        getIllnessSymptoms.Parameters.AddWithValue("@illnessID", MatchIllnesses[ill].illnessID);
+                        SqlDataReader reader2 = getIllnessSymptoms.ExecuteReader();
+
+                        while (reader2.Read())
+                        {
+                            MatchIllnesses[ill].addSymptom(new Symptom((int)reader2["symptom id"], (string)reader2["symptom name"]));
+                        }
+                        reader2.Close();
                     }
+
+                    form.Transfer.sconn.Close();
                 }
-
-                sqlConne.Close();
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.ToString());
             }
-
             return MatchIllnesses;
         }
     }
@@ -222,6 +234,9 @@ namespace DiagnosisPrognosis
         private List<Symptom> _symptoms;
         private List<Symptom> _MatchSymptoms;
 
+        private int _virality;
+        public int virality { get => _virality; set => _virality = value; }
+
         public int illnessID { get => _illnessID; set => _illnessID = value; }
         public string illnessName { get => _illnessName; set => _illnessName = value; }
 
@@ -232,13 +247,14 @@ namespace DiagnosisPrognosis
             _symptoms = new List<Symptom>(matchedSymptoms);
         }
 
-        public Illness(int illnessID, string illnessName, Symptom initialMatch)
+        public Illness(int illnessID, string illnessName, Symptom initialMatch, int viral)
         {
             _illnessID = illnessID;
             _illnessName = illnessName;
             _symptoms = new List<Symptom>();
             _MatchSymptoms = new List<Symptom>();
             _MatchSymptoms.Add(initialMatch);
+            _virality = viral;
         }
 
         public Illness(int illnessID, string illnessName)
