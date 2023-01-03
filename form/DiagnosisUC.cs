@@ -30,8 +30,8 @@ namespace DiagnosisPrognosis
             {
                 using (SqlConnection sconne = sconn)
                 {
-                    form.Transfer.sconn.ConnectionString = @"Data Source=.\SQLEXPRESS;" +
-                                                "AttachDbFilename=" + form.Transfer.DatabasePath + "; " +
+                    Transfer.DatabaseConnection.ConnectionString = @"Data Source=.\SQLEXPRESS;" +
+                                                "AttachDbFilename=" + Transfer.DatabasePath + "; " +
                                                 "Integrated Security=True; " +
                                                 "Connect Timeout=30; " +
                                                 "User Instance=True";
@@ -150,18 +150,18 @@ namespace DiagnosisPrognosis
             }
             try
             {
-                form.Transfer.sconn.ConnectionString = @"Data Source=.\SQLEXPRESS;" +
-                                                "AttachDbFilename=" + form.Transfer.DatabasePath + "; " +
+                Transfer.DatabaseConnection.ConnectionString = @"Data Source=.\SQLEXPRESS;" +
+                                                "AttachDbFilename=" + Transfer.DatabasePath + "; " +
                                                 "Integrated Security=True; " +
                                                 "Connect Timeout=30; " +
                                                 "User Instance=True";
-                using (form.Transfer.sconn)
+                using (Transfer.DatabaseConnection)
                 {
-                    if (form.Transfer.sconn.State == ConnectionState.Closed)
+                    if (Transfer.DatabaseConnection.State == ConnectionState.Closed)
                     {
-                        form.Transfer.sconn.Open();
+                        Transfer.DatabaseConnection.Open();
                     }
-                    using (SqlCommand scmd = new SqlCommand("SELECT a.patient_id, CONCAT(a.patient_lastname, ', ', a.patient_firstname, ' ', SUBSTRING(a.patient_middlename, 1, 1)) AS 'Name', a.patient_contactnumber AS 'Contact', b.course_name AS 'Course', a.patient_birthdate AS 'DOB' FROM PatientTable a INNER JOIN CourseTable b ON a.patient_course_id = b.course_id WHERE a.patient_id = @cID", form.Transfer.sconn))
+                    using (SqlCommand scmd = new SqlCommand("SELECT a.patient_id, CONCAT(a.patient_lastname, ', ', a.patient_firstname, ' ', SUBSTRING(a.patient_middlename, 1, 1)) AS 'Name', a.patient_contactnumber AS 'Contact', b.course_name AS 'Course', a.patient_birthdate AS 'DOB' FROM PatientTable a INNER JOIN CourseTable b ON a.patient_course_id = b.course_id WHERE a.patient_id = @cID", Transfer.DatabaseConnection))
                     {
                         scmd.Parameters.AddWithValue("@cID", SqlDbType.Int).Value = cmbDiagPatient.SelectedValue;
                         SqlDataReader sread = scmd.ExecuteReader();
@@ -173,7 +173,7 @@ namespace DiagnosisPrognosis
                             lblDiagDOB.Text = sread.GetDateTime(4).ToString("yyyy-MM-dd");
                         }
                     }
-                    form.Transfer.sconn.Close();
+                    Transfer.DatabaseConnection.Close();
                 }
             }
             catch (SqlException ex)

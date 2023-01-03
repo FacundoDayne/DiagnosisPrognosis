@@ -111,15 +111,15 @@ namespace DiagnosisPrognosis
             List<Illness> MatchIllnesses = new List<Illness>();
             try
             {
-                form.Transfer.sconn.ConnectionString = @"Data Source=.\SQLEXPRESS;" +
-                                                "AttachDbFilename=" + form.Transfer.DatabasePath + "; " +
+                Transfer.DatabaseConnection.ConnectionString = @"Data Source=.\SQLEXPRESS;" +
+                                                "AttachDbFilename=" + Transfer.DatabasePath + "; " +
                                                 "Integrated Security=True; " +
                                                 "Connect Timeout=30; " +
                                                 "User Instance=True";
-                using (form.Transfer.sconn)
+                using (Transfer.DatabaseConnection)
                 {
                     // ** opens sql connection ** //
-                    form.Transfer.sconn.Open();
+                    Transfer.DatabaseConnection.Open();
 
                     // ** Loops through all given symptoms
                     foreach (Symptom x in symptoms)
@@ -135,7 +135,7 @@ namespace DiagnosisPrognosis
                             " inner join IllnessSymptomsTable b on b.symptom_id = a.symptom_id" +
                             " inner join IllnessTable c on b.illness_id = c.illness_id" +
                             " WHERE a.symptom_id = @symptomID;"
-                            , form.Transfer.sconn
+                            , Transfer.DatabaseConnection
                         );
 
                         findIllnessViaID.Parameters.AddWithValue("@symptomID", x.symptomID);
@@ -192,7 +192,7 @@ namespace DiagnosisPrognosis
                             " inner join IllnessSymptomsTable b on b.illness_id = a.illness_id" +
                             " inner join SymptomsTable c on b.symptom_id = c.symptom_id" +
                             " WHERE a.illness_id = @illnessID;"
-                            , form.Transfer.sconn);
+                            , Transfer.DatabaseConnection);
 
                         getIllnessSymptoms.Parameters.AddWithValue("@illnessID", MatchIllnesses[ill].illnessID);
                         SqlDataReader reader2 = getIllnessSymptoms.ExecuteReader();
@@ -204,7 +204,7 @@ namespace DiagnosisPrognosis
                         reader2.Close();
                     }
 
-                    form.Transfer.sconn.Close();
+                    Transfer.DatabaseConnection.Close();
                 }
             } catch (Exception ex)
             {

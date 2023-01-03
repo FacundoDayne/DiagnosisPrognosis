@@ -42,7 +42,7 @@ namespace DiagnosisPrognosis
                 //if (sr.ReadLine() != null) { DatabasePath = sr.ReadLine(); }
                 //MessageBox.Show("DatabaseLocation Loaded", "Database Location Found");
                 //MessageBox.Show(Program.thisLocation);
-                //DiagnosisPrognosis.form.Transfer.DatabasePath = DatabasePath;
+                //DiagnosisPrognosis.Transfer.DatabasePath = DatabasePath;
                 /*
                 sconn = new SqlConnection(@"Data Source=.\SQLEXPRESS;" +
                                                     "AttachDbFilename=" + DatabasePath + "; " +
@@ -66,13 +66,13 @@ namespace DiagnosisPrognosis
                                                 "Integrated Security=True; " +
                                                 "Connect Timeout=30; " +
                                                 "User Instance=True";
-            form.Transfer.DatabasePath = DatabasePath;
+            Transfer.DatabasePath = DatabasePath;
             System.Diagnostics.Debug.WriteLine(sconn.ConnectionString);
             sconn.Open();
             sconn.Close();
-            form.Transfer.sconn = new SqlConnection();
-            form.Transfer.sconn.ConnectionString = @"Data Source=.\SQLEXPRESS;" +
-                                                "AttachDbFilename=" + form.Transfer.DatabasePath + "; " +
+            Transfer.DatabaseConnection = new SqlConnection();
+            Transfer.DatabaseConnection.ConnectionString = @"Data Source=.\SQLEXPRESS;" +
+                                                "AttachDbFilename=" + Transfer.DatabasePath + "; " +
                                                 "Integrated Security=True; " +
                                                 "Connect Timeout=30; " +
                                                 "User Instance=True";

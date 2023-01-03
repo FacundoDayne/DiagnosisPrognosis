@@ -20,7 +20,7 @@ namespace DiagnosisPrognosis.form.SQL
         {
             InitializeComponent();
             this.sconn = sconn;
-            //DatabasePath = DiagnosisPrognosis.form.Transfer.DatabasePath;
+            //DatabasePath = DiagnosisPrognosis.Transfer.DatabasePath;
             /*sconn = new SqlConnection(@"Data Source=.\SQLEXPRESS;" +
                                                     "AttachDbFilename=" + DatabasePath + "; " +
                                                     "Integrated Security=True; " +

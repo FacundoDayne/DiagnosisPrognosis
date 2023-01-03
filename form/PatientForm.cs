@@ -16,7 +16,6 @@ namespace DiagnosisPrognosis
     {
 
         static string betaString = @"Data Source=(LocalDB)\MSSQLLocalDB;Integrated Security=True;AttachDbFilename=";
-        static string connectionString = betaString + LandingForm.DatabasePath;
         string DatabasePath;
         SqlConnection sconn;
         Regex contactRx;
@@ -32,7 +31,7 @@ namespace DiagnosisPrognosis
 
             try
             {
-                DatabasePath = DiagnosisPrognosis.form.Transfer.DatabasePath;
+                DatabasePath = DiagnosisPrognosis.Transfer.DatabasePath;
             } catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, ex.ToString());
@@ -43,35 +42,12 @@ namespace DiagnosisPrognosis
                                                     "Integrated Security=True; " +
                                                     "Connect Timeout=30; " +
                                                     "User Instance=True");
-            /*
-            Sex[] sexes = new Sex[]
-            {
-                new Sex(0, "Not Known"),
-                new Sex(1, "Male"),
-                new Sex(2, "Female"),
-                new Sex(9, "Not Applicable")
-            };
-            Course[] courses = new Course[]
-            {
-                new Course(0, "Not Applicable"),
-                new Course(1, "BSIT"),
-                new Course(2, "BACOMM"),
-                new Course(3, "BSHM")
-            };
-            cmbSex.DataSource = sexes;
-            cmbSex.ValueMember = "id";
-            cmbSex.DisplayMember = "name";
-            cmbCourse.DataSource = courses;
-            cmbCourse.ValueMember = "id";
-            cmbCourse.DisplayMember = "name";
-
-            */
-
+            
             try
             {
-                form.Transfer.sconn.Open();
+                Transfer.DatabaseConnection.Open();
 
-                using (SqlDataAdapter scmd = new SqlDataAdapter("SELECT sex_id, sex_name FROM SexTable;", form.Transfer.sconn))
+                using (SqlDataAdapter scmd = new SqlDataAdapter("SELECT sex_id, sex_name FROM SexTable;", Transfer.DatabaseConnection))
                 {
                     SqlCommandBuilder scmbld = new SqlCommandBuilder(scmd);
                     DataSet datset = new DataSet();
@@ -83,7 +59,7 @@ namespace DiagnosisPrognosis
 
                 }
 
-                using (SqlDataAdapter scmd = new SqlDataAdapter("SELECT course_id, course_name FROM CourseTable;", form.Transfer.sconn))
+                using (SqlDataAdapter scmd = new SqlDataAdapter("SELECT course_id, course_name FROM CourseTable;", Transfer.DatabaseConnection))
                 {
                     SqlCommandBuilder scmbld = new SqlCommandBuilder(scmd);
                     DataSet datset = new DataSet();
@@ -94,7 +70,7 @@ namespace DiagnosisPrognosis
                     cmbCourse.DisplayMember = "course_name";
 
                 }
-                form.Transfer.sconn.Close();
+                Transfer.DatabaseConnection.Close();
             } catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message, ex.ToString());
@@ -116,7 +92,7 @@ namespace DiagnosisPrognosis
                     try
                     {
 
-                        using (form.Transfer.sconn)
+                        using (Transfer.DatabaseConnection)
                         {
 
                             //lname, fname, mname, age, sex, course, contactnum, bday, ch1, ch2, ch3, rb
@@ -129,13 +105,13 @@ namespace DiagnosisPrognosis
                                 MessageBox.Show("Age wust be numerical");
                             }
 
-                            form.Transfer.sconn.Open();
-                            SqlTransaction transc = form.Transfer.sconn.BeginTransaction();
+                            Transfer.DatabaseConnection.Open();
+                            SqlTransaction transc = Transfer.DatabaseConnection.BeginTransaction();
 
                             SqlCommand sqlAddPatient = new SqlCommand(
                                 "INSERT INTO PatientTable values(@LastName, @FirstName, @MiddleName," +
                                 "@Age, @Sex, @Course, @Contact, @Birthdate, @Allergy, @Consult, @Checkup, @Medicalneeds, @StudentNum)"
-                                , form.Transfer.sconn, transc);
+                                , Transfer.DatabaseConnection, transc);
 
                             sqlAddPatient.Parameters.AddWithValue("@LastName", txtLastName.Text);
                             sqlAddPatient.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
@@ -153,12 +129,12 @@ namespace DiagnosisPrognosis
 
                             sqlAddPatient.ExecuteNonQuery();
 
-                            //form.SQL.SQLOutput frm = new form.SQL.SQLOutput("SELECT * FROM PatientTable;", form.Transfer.sconn, false, transc);
+                            //form.SQL.SQLOutput frm = new form.SQL.SQLOutput("SELECT * FROM PatientTable;", Transfer.sconn, false, transc);
                             //frm.ShowDialog();
 
                             transc.Commit();
                             
-                            form.Transfer.sconn.Close();
+                            Transfer.DatabaseConnection.Close();
                         }
                     }
                     catch (SqlException ex)

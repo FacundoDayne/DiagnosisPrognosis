@@ -55,13 +55,13 @@ namespace DiagnosisPrognosis
         {
             try
             {
-                form.Transfer.sconn.ConnectionString = @"Data Source=.\SQLEXPRESS;" +
-                                                "AttachDbFilename=" + form.Transfer.DatabasePath + "; " +
+                Transfer.DatabaseConnection.ConnectionString = @"Data Source=.\SQLEXPRESS;" +
+                                                "AttachDbFilename=" + Transfer.DatabasePath + "; " +
                                                 "Integrated Security=True; " +
                                                 "Connect Timeout=30; " +
                                                 "User Instance=True";
-                form.Transfer.sconn.Open();
-                using (SqlDataAdapter datad = new SqlDataAdapter("SELECT patient_id AS 'ID', CONCAT(patient_lastname, ', ', patient_firstname, ' ', SUBSTRING(patient_middlename, 1, 1)) AS 'Name' FROM PatientTable", form.Transfer.sconn))
+                Transfer.DatabaseConnection.Open();
+                using (SqlDataAdapter datad = new SqlDataAdapter("SELECT patient_id AS 'ID', CONCAT(patient_lastname, ', ', patient_firstname, ' ', SUBSTRING(patient_middlename, 1, 1)) AS 'Name' FROM PatientTable", Transfer.DatabaseConnection))
                 {
                     SqlCommandBuilder scmd = new SqlCommandBuilder(datad);
                     DataSet daset = new DataSet();
@@ -75,7 +75,7 @@ namespace DiagnosisPrognosis
 	                patient_firstname varchar(30),
 	                patient_middlename varchar(30), 
                 */
-                using (SqlDataAdapter datad = new SqlDataAdapter("SELECT patient_id AS 'ID', CONCAT(patient_lastname, ', ', patient_firstname, ' ', SUBSTRING(patient_middlename, 1, 1)) AS 'Name' FROM PatientTable", form.Transfer.sconn))
+                using (SqlDataAdapter datad = new SqlDataAdapter("SELECT patient_id AS 'ID', CONCAT(patient_lastname, ', ', patient_firstname, ' ', SUBSTRING(patient_middlename, 1, 1)) AS 'Name' FROM PatientTable", Transfer.DatabaseConnection))
                 {
                     SqlCommandBuilder scmd = new SqlCommandBuilder(datad);
                     DataSet daset = new DataSet();
@@ -88,7 +88,7 @@ namespace DiagnosisPrognosis
                     cmbSearchPatient.SelectedIndex = -1;
                     cmbSearchPatient.Text = "";
                 }
-                form.Transfer.sconn.Close();
+                Transfer.DatabaseConnection.Close();
             }
             catch (SqlException ex)
             {
@@ -101,16 +101,16 @@ namespace DiagnosisPrognosis
         {
             try
             {
-                if (form.Transfer.sconn.State == ConnectionState.Closed)
+                if (Transfer.DatabaseConnection.State == ConnectionState.Closed)
                 {
-                    form.Transfer.sconn.ConnectionString = @"Data Source=.\SQLEXPRESS;" +
-                                                "AttachDbFilename=" + form.Transfer.DatabasePath + "; " +
+                    Transfer.DatabaseConnection.ConnectionString = @"Data Source=.\SQLEXPRESS;" +
+                                                "AttachDbFilename=" + Transfer.DatabasePath + "; " +
                                                 "Integrated Security=True; " +
                                                 "Connect Timeout=30; " +
                                                 "User Instance=True";
-                    form.Transfer.sconn.Open();
+                    Transfer.DatabaseConnection.Open();
                 }
-                using (SqlCommand scmd = new SqlCommand("SELECT a.patient_id, CONCAT(a.patient_lastname, ', ', a.patient_firstname, ' ', SUBSTRING(a.patient_middlename, 1, 1)) AS 'Name', a.patient_age AS 'Age', c.sex_name as 'Sex', b.course_name AS 'Course' FROM PatientTable a INNER JOIN CourseTable b ON a.patient_course_id = b.course_id INNER JOIN SexTable c ON c.sex_id = a.patient_sex_id WHERE a.patient_id = @cID", form.Transfer.sconn))
+                using (SqlCommand scmd = new SqlCommand("SELECT a.patient_id, CONCAT(a.patient_lastname, ', ', a.patient_firstname, ' ', SUBSTRING(a.patient_middlename, 1, 1)) AS 'Name', a.patient_age AS 'Age', c.sex_name as 'Sex', b.course_name AS 'Course' FROM PatientTable a INNER JOIN CourseTable b ON a.patient_course_id = b.course_id INNER JOIN SexTable c ON c.sex_id = a.patient_sex_id WHERE a.patient_id = @cID", Transfer.DatabaseConnection))
                 {
                     scmd.Parameters.AddWithValue("@cID", SqlDbType.Int).Value = cmbSearchPatient.SelectedValue;
                     SqlDataReader sread = scmd.ExecuteReader();
@@ -122,7 +122,7 @@ namespace DiagnosisPrognosis
                         lblCourse.Text = sread.GetString(4);
                     }
                 }
-                form.Transfer.sconn.Close();
+                Transfer.DatabaseConnection.Close();
             }
             catch (SqlException ex)
             {

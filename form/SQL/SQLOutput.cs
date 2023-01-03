@@ -38,12 +38,12 @@ namespace DiagnosisPrognosis.form.SQL
         {
             if (openhere == true)
             {
-                form.Transfer.sconn.ConnectionString = @"Data Source=.\SQLEXPRESS;" +
-                                                "AttachDbFilename=" + form.Transfer.DatabasePath + "; " +
+                Transfer.DatabaseConnection.ConnectionString = @"Data Source=.\SQLEXPRESS;" +
+                                                "AttachDbFilename=" + Transfer.DatabasePath + "; " +
                                                 "Integrated Security=True; " +
                                                 "Connect Timeout=30; " +
                                                 "User Instance=True";
-                form.Transfer.sconn.Open();
+                Transfer.DatabaseConnection.Open();
             }
             
             string[] queryArgs = doQuery.Split(' ');
@@ -79,12 +79,12 @@ namespace DiagnosisPrognosis.form.SQL
             }
             if (openhere == true)
             {
-                form.Transfer.sconn.Close();
+                Transfer.DatabaseConnection.Close();
             }
         }
         public void withTable()
         {
-            using (SqlDataAdapter datad = new SqlDataAdapter(doQuery, form.Transfer.sconn))
+            using (SqlDataAdapter datad = new SqlDataAdapter(doQuery, Transfer.DatabaseConnection))
             {
                 SqlCommandBuilder scmd = new SqlCommandBuilder(datad);
                 DataSet daset = new DataSet();
@@ -97,7 +97,7 @@ namespace DiagnosisPrognosis.form.SQL
         }
         public void withTable(SqlTransaction transc)
         {
-            using (SqlDataAdapter datad = new SqlDataAdapter(doQuery, form.Transfer.sconn))
+            using (SqlDataAdapter datad = new SqlDataAdapter(doQuery, Transfer.DatabaseConnection))
             {
                 SqlCommandBuilder scmd = new SqlCommandBuilder(datad);
                 DataSet daset = new DataSet();
@@ -113,7 +113,7 @@ namespace DiagnosisPrognosis.form.SQL
             SqlTransaction tran = sconn.BeginTransaction("Transact");
             try
             {
-                using (SqlCommand scmd = new SqlCommand(doQuery, form.Transfer.sconn, tran))
+                using (SqlCommand scmd = new SqlCommand(doQuery, Transfer.DatabaseConnection, tran))
                 {
                     scmd.ExecuteNonQuery();
                 }
