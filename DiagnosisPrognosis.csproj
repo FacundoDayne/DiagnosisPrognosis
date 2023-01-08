@@ -21,9 +21,26 @@
     <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\IPSelection.Designer.cs" />
     <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\Login.cs" />
     <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\Login.Designer.cs" />
+    <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\newForm\Program.cs" />
     <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\obj\Debug\net6.0-windows\.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" />
     <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\obj\Debug\net6.0-windows\DiagnosisPrognosisClient.AssemblyInfo.cs" />
     <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\obj\Debug\net6.0-windows\DiagnosisPrognosisClient.GlobalUsings.g.cs" />
+    <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\oldForm\DiagnosisUC.cs" />
+    <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\oldForm\DiagnosisUC.Designer.cs" />
+    <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\oldForm\Form1.cs" />
+    <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\oldForm\Form1.Designer.cs" />
+    <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\oldForm\InventoryUC.cs" />
+    <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\oldForm\InventoryUC.Designer.cs" />
+    <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\oldForm\Login.cs" />
+    <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\oldForm\Login.Designer.cs" />
+    <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\oldForm\PatientForm.cs" />
+    <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\oldForm\PatientForm.Designer.cs" />
+    <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\oldForm\PatientInfoUC.cs" />
+    <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\oldForm\PatientInfoUC.Designer.cs" />
+    <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\oldForm\PSymptomsForm.cs" />
+    <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\oldForm\PSymptomsForm.Designer.cs" />
+    <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\oldForm\QueueingForm.cs" />
+    <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\oldForm\QueueingForm.Designer.cs" />
     <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\PatientForm.cs" />
     <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\PatientForm.Designer.cs" />
     <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\PatientInfoUC.cs" />
@@ -36,6 +53,9 @@
     <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\PSymptomsForm.Designer.cs" />
     <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\QueueingForm.cs" />
     <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\QueueingForm.Designer.cs" />
+    <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\SymptomsUC.cs" />
+    <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\SymptomsUC.Designer.cs" />
+    <Compile Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\Transfer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,24 +70,56 @@
     <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\obj\DiagnosisPrognosisClient.csproj.nuget.dgspec.json" />
     <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\obj\project.assets.json" />
     <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\Resources\add diag.png" />
+    <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\Resources\add diag1.png" />
+    <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\Resources\add new patient.png" />
     <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\Resources\Close.png" />
+    <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\Resources\Exit new.png" />
     <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\Resources\exit.png" />
     <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\Resources\global.jpg" />
+    <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\Resources\Inventory.png" />
+    <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\Resources\Logout.png" />
+    <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\Resources\Patient info.png" />
     <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\Resources\rsz_history1.png" />
+    <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\Resources\rsz_hospital_information.png" />
     <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\Resources\rsz_update_details.png" />
+    <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\Resources\rsz_update_details1.png" />
+    <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\Resources\rsz_update_details2.png" />
+    <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\Resources\sti bg.png" />
     <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\Resources\sti logo.png" />
+    <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\Icons\add diag.png" />
+    <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\Icons\add new patient.png" />
+    <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\Icons\Exit new.png" />
+    <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\Icons\global.jpg" />
+    <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\Icons\Inventory.png" />
+    <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\Icons\Logout.png" />
+    <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\Icons\Patient info.png" />
+    <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\Icons\rsz_history1.png" />
+    <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\Icons\rsz_hospital_information.png" />
+    <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\Icons\rsz_update_details.png" />
+    <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\Icons\sti bg.png" />
+    <Content Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\Icons\sti logo.png" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\DiagnosisUC.resx" />
     <EmbeddedResource Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\Form1.resx" />
     <EmbeddedResource Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\InventoryUC.resx" />
+    <EmbeddedResource Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\IPSelection.resx" />
     <EmbeddedResource Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\Login.resx" />
+    <EmbeddedResource Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\oldForm\DiagnosisUC.resx" />
+    <EmbeddedResource Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\oldForm\Form1.resx" />
+    <EmbeddedResource Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\oldForm\InventoryUC.resx" />
+    <EmbeddedResource Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\oldForm\Login.resx" />
+    <EmbeddedResource Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\oldForm\PatientForm.resx" />
+    <EmbeddedResource Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\oldForm\PatientInfoUC.resx" />
+    <EmbeddedResource Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\oldForm\PSymptomsForm.resx" />
+    <EmbeddedResource Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\oldForm\QueueingForm.resx" />
     <EmbeddedResource Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\PatientForm.resx" />
     <EmbeddedResource Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\PatientInfoUC.resx" />
     <EmbeddedResource Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\Properties\Resources.resx" />
     <EmbeddedResource Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\PSymptomsForm.resx" />
     <EmbeddedResource Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\QueueingForm.resx" />
+    <EmbeddedResource Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\SymptomsUC.resx" />
   </ItemGroup>
 
   <ItemGroup>
@@ -79,7 +131,11 @@
     <None Include="bin\Debug\net6.0-windows\DiagnosisPrognosis.pdb" />
     <None Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\.vs\DiagnosisPrognosisClient\DesignTimeBuild\.dtbcache.v2" />
     <None Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\.vs\DiagnosisPrognosisClient\v17\.futdcache.v1" />
+    <None Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\.vs\DiagnosisPrognosisClient\v17\TestStore\0\000.testlog" />
+    <None Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\.vs\DiagnosisPrognosisClient\v17\TestStore\0\testlog.manifest" />
     <None Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient.sln" />
+    <None Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\bin\Debug\net6.0-windows\db_backup\SafeDP_Database.mdf" />
+    <None Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\bin\Debug\net6.0-windows\db_backup\SafeDP_Database_log.ldf" />
     <None Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\bin\Debug\net6.0-windows\DiagnosisPrognosisClient.dll" />
     <None Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\bin\Debug\net6.0-windows\DiagnosisPrognosisClient.exe" />
     <None Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\bin\Debug\net6.0-windows\DiagnosisPrognosisClient.pdb" />
@@ -101,12 +157,14 @@
     <None Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\obj\Debug\net6.0-windows\DiagnosisPrognosisClient.genruntimeconfig.cache" />
     <None Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\obj\Debug\net6.0-windows\DiagnosisPrognosisClient.Homepage.resources" />
     <None Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\obj\Debug\net6.0-windows\DiagnosisPrognosisClient.InventoryUC.resources" />
+    <None Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\obj\Debug\net6.0-windows\DiagnosisPrognosisClient.IPSelection.resources" />
     <None Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\obj\Debug\net6.0-windows\DiagnosisPrognosisClient.Login.resources" />
     <None Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\obj\Debug\net6.0-windows\DiagnosisPrognosisClient.PatientForm.resources" />
     <None Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\obj\Debug\net6.0-windows\DiagnosisPrognosisClient.pdb" />
     <None Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\obj\Debug\net6.0-windows\DiagnosisPrognosisClient.Properties.Resources.resources" />
     <None Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\obj\Debug\net6.0-windows\DiagnosisPrognosisClient.PSymptomsForm.resources" />
     <None Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\obj\Debug\net6.0-windows\DiagnosisPrognosisClient.QueueingForm.resources" />
+    <None Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\obj\Debug\net6.0-windows\DiagnosisPrognosisClient.SymptomsUC.resources" />
     <None Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\obj\Debug\net6.0-windows\refint\DiagnosisPrognosisClient.dll" />
     <None Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\obj\Debug\net6.0-windows\ref\DiagnosisPrognosisClient.dll" />
     <None Include="bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\obj\DiagnosisPrognosisClient.csproj.nuget.g.props" />

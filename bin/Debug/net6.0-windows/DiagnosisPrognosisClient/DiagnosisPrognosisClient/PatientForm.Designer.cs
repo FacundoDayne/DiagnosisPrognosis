@@ -40,7 +40,7 @@ namespace DiagnosisPrognosisClient
 			this.label6 = new System.Windows.Forms.Label();
 			this.txtLastName = new System.Windows.Forms.TextBox();
 			this.txtAge = new System.Windows.Forms.TextBox();
-			this.txtContactNumber = new System.Windows.Forms.TextBox();
+			this.txtContactNum = new System.Windows.Forms.TextBox();
 			this.cmbCourse = new System.Windows.Forms.ComboBox();
 			this.cmbSex = new System.Windows.Forms.ComboBox();
 			this.txtFirstName = new System.Windows.Forms.TextBox();
@@ -48,17 +48,17 @@ namespace DiagnosisPrognosisClient
 			this.txtMiddleName = new System.Windows.Forms.TextBox();
 			this.label8 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
-			this.chkMedicalConcern1 = new System.Windows.Forms.CheckBox();
-			this.chkMedicalConcern2 = new System.Windows.Forms.CheckBox();
-			this.chkMedicalConcern3 = new System.Windows.Forms.CheckBox();
+			this.chkMed1 = new System.Windows.Forms.CheckBox();
+			this.chkMed2 = new System.Windows.Forms.CheckBox();
+			this.chkMed3 = new System.Windows.Forms.CheckBox();
 			this.label10 = new System.Windows.Forms.Label();
 			this.dateBirthdate = new System.Windows.Forms.DateTimePicker();
 			this.btnSubmit = new System.Windows.Forms.Button();
 			this.btnClear = new System.Windows.Forms.Button();
 			this.label11 = new System.Windows.Forms.Label();
-			this.radAllergy = new System.Windows.Forms.RadioButton();
+			this.chkAllergy = new System.Windows.Forms.RadioButton();
 			this.radioButton2 = new System.Windows.Forms.RadioButton();
-			this.txtStudentNumber = new System.Windows.Forms.TextBox();
+			this.txtStudentNum = new System.Windows.Forms.TextBox();
 			this.label12 = new System.Windows.Forms.Label();
 			this.PanelCeiling.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbClose)).BeginInit();
@@ -67,7 +67,7 @@ namespace DiagnosisPrognosisClient
 			// 
 			// PanelCeiling
 			// 
-			this.PanelCeiling.BackColor = System.Drawing.SystemColors.ActiveBorder;
+			this.PanelCeiling.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(87)))), ((int)(((byte)(155)))));
 			this.PanelCeiling.Controls.Add(this.pbClose);
 			this.PanelCeiling.Controls.Add(this.label1);
 			this.PanelCeiling.Controls.Add(this.pbSTIlogo);
@@ -75,26 +75,29 @@ namespace DiagnosisPrognosisClient
 			this.PanelCeiling.Location = new System.Drawing.Point(0, 0);
 			this.PanelCeiling.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.PanelCeiling.Name = "PanelCeiling";
-			this.PanelCeiling.Size = new System.Drawing.Size(1138, 115);
+			this.PanelCeiling.Size = new System.Drawing.Size(1008, 115);
 			this.PanelCeiling.TabIndex = 1;
 			// 
 			// pbClose
 			// 
-			this.pbClose.Image = global::DiagnosisPrognosisClient.Properties.Resources.Close;
-			this.pbClose.Location = new System.Drawing.Point(1083, 14);
+			this.pbClose.Enabled = false;
+			this.pbClose.Image = global::DiagnosisPrognosisClient.Properties.Resources.Exit_new;
+			this.pbClose.Location = new System.Drawing.Point(921, 12);
 			this.pbClose.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.pbClose.Name = "pbClose";
-			this.pbClose.Size = new System.Drawing.Size(41, 36);
+			this.pbClose.Size = new System.Drawing.Size(70, 60);
 			this.pbClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pbClose.TabIndex = 2;
 			this.pbClose.TabStop = false;
+			this.pbClose.Visible = false;
 			this.pbClose.Click += new System.EventHandler(this.pbClose_Click);
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Cambria", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
-			this.label1.Location = new System.Drawing.Point(99, 21);
+			this.label1.ForeColor = System.Drawing.Color.White;
+			this.label1.Location = new System.Drawing.Point(14, 28);
 			this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(460, 57);
@@ -111,6 +114,7 @@ namespace DiagnosisPrognosisClient
 			this.pbSTIlogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pbSTIlogo.TabIndex = 0;
 			this.pbSTIlogo.TabStop = false;
+			this.pbSTIlogo.Visible = false;
 			// 
 			// label2
 			// 
@@ -174,7 +178,7 @@ namespace DiagnosisPrognosisClient
 			this.txtLastName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.txtLastName.Name = "txtLastName";
 			this.txtLastName.Size = new System.Drawing.Size(288, 32);
-			this.txtLastName.TabIndex = 7;
+			this.txtLastName.TabIndex = 1;
 			// 
 			// txtAge
 			// 
@@ -183,16 +187,16 @@ namespace DiagnosisPrognosisClient
 			this.txtAge.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.txtAge.Name = "txtAge";
 			this.txtAge.Size = new System.Drawing.Size(74, 32);
-			this.txtAge.TabIndex = 8;
+			this.txtAge.TabIndex = 4;
 			// 
-			// txtContactNumber
+			// txtContactNum
 			// 
-			this.txtContactNumber.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.txtContactNumber.Location = new System.Drawing.Point(18, 508);
-			this.txtContactNumber.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.txtContactNumber.Name = "txtContactNumber";
-			this.txtContactNumber.Size = new System.Drawing.Size(288, 32);
-			this.txtContactNumber.TabIndex = 9;
+			this.txtContactNum.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.txtContactNum.Location = new System.Drawing.Point(18, 508);
+			this.txtContactNum.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.txtContactNum.Name = "txtContactNum";
+			this.txtContactNum.Size = new System.Drawing.Size(231, 32);
+			this.txtContactNum.TabIndex = 7;
 			// 
 			// cmbCourse
 			// 
@@ -201,8 +205,8 @@ namespace DiagnosisPrognosisClient
 			this.cmbCourse.Location = new System.Drawing.Point(18, 433);
 			this.cmbCourse.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.cmbCourse.Name = "cmbCourse";
-			this.cmbCourse.Size = new System.Drawing.Size(368, 33);
-			this.cmbCourse.TabIndex = 10;
+			this.cmbCourse.Size = new System.Drawing.Size(576, 33);
+			this.cmbCourse.TabIndex = 6;
 			// 
 			// cmbSex
 			// 
@@ -211,23 +215,23 @@ namespace DiagnosisPrognosisClient
 			this.cmbSex.Location = new System.Drawing.Point(18, 347);
 			this.cmbSex.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.cmbSex.Name = "cmbSex";
-			this.cmbSex.Size = new System.Drawing.Size(109, 33);
-			this.cmbSex.TabIndex = 11;
+			this.cmbSex.Size = new System.Drawing.Size(200, 33);
+			this.cmbSex.TabIndex = 5;
 			// 
 			// txtFirstName
 			// 
 			this.txtFirstName.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.txtFirstName.Location = new System.Drawing.Point(401, 183);
+			this.txtFirstName.Location = new System.Drawing.Point(362, 183);
 			this.txtFirstName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.txtFirstName.Name = "txtFirstName";
 			this.txtFirstName.Size = new System.Drawing.Size(288, 32);
-			this.txtFirstName.TabIndex = 13;
+			this.txtFirstName.TabIndex = 2;
 			// 
 			// label7
 			// 
 			this.label7.AutoSize = true;
 			this.label7.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.label7.Location = new System.Drawing.Point(398, 150);
+			this.label7.Location = new System.Drawing.Point(359, 150);
 			this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label7.Name = "label7";
 			this.label7.Size = new System.Drawing.Size(125, 25);
@@ -237,17 +241,17 @@ namespace DiagnosisPrognosisClient
 			// txtMiddleName
 			// 
 			this.txtMiddleName.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.txtMiddleName.Location = new System.Drawing.Point(780, 183);
+			this.txtMiddleName.Location = new System.Drawing.Point(697, 183);
 			this.txtMiddleName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.txtMiddleName.Name = "txtMiddleName";
 			this.txtMiddleName.Size = new System.Drawing.Size(294, 32);
-			this.txtMiddleName.TabIndex = 15;
+			this.txtMiddleName.TabIndex = 3;
 			// 
 			// label8
 			// 
 			this.label8.AutoSize = true;
 			this.label8.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.label8.Location = new System.Drawing.Point(777, 150);
+			this.label8.Location = new System.Drawing.Point(694, 150);
 			this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(146, 25);
@@ -258,54 +262,54 @@ namespace DiagnosisPrognosisClient
 			// 
 			this.label9.AutoSize = true;
 			this.label9.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.label9.Location = new System.Drawing.Point(398, 227);
+			this.label9.Location = new System.Drawing.Point(259, 227);
 			this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(180, 25);
 			this.label9.TabIndex = 16;
 			this.label9.Text = "Medical Concern:";
 			// 
-			// chkMedicalConcern1
+			// chkMed1
 			// 
-			this.chkMedicalConcern1.AutoSize = true;
-			this.chkMedicalConcern1.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.chkMedicalConcern1.Location = new System.Drawing.Point(401, 268);
-			this.chkMedicalConcern1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.chkMedicalConcern1.Name = "chkMedicalConcern1";
-			this.chkMedicalConcern1.Size = new System.Drawing.Size(156, 29);
-			this.chkMedicalConcern1.TabIndex = 17;
-			this.chkMedicalConcern1.Text = "Consultation";
-			this.chkMedicalConcern1.UseVisualStyleBackColor = true;
+			this.chkMed1.AutoSize = true;
+			this.chkMed1.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.chkMed1.Location = new System.Drawing.Point(263, 268);
+			this.chkMed1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.chkMed1.Name = "chkMed1";
+			this.chkMed1.Size = new System.Drawing.Size(156, 29);
+			this.chkMed1.TabIndex = 9;
+			this.chkMed1.Text = "Consultation";
+			this.chkMed1.UseVisualStyleBackColor = true;
 			// 
-			// chkMedicalConcern2
+			// chkMed2
 			// 
-			this.chkMedicalConcern2.AutoSize = true;
-			this.chkMedicalConcern2.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.chkMedicalConcern2.Location = new System.Drawing.Point(401, 308);
-			this.chkMedicalConcern2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.chkMedicalConcern2.Name = "chkMedicalConcern2";
-			this.chkMedicalConcern2.Size = new System.Drawing.Size(121, 29);
-			this.chkMedicalConcern2.TabIndex = 18;
-			this.chkMedicalConcern2.Text = "Check-up";
-			this.chkMedicalConcern2.UseVisualStyleBackColor = true;
+			this.chkMed2.AutoSize = true;
+			this.chkMed2.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.chkMed2.Location = new System.Drawing.Point(263, 308);
+			this.chkMed2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.chkMed2.Name = "chkMed2";
+			this.chkMed2.Size = new System.Drawing.Size(121, 29);
+			this.chkMed2.TabIndex = 10;
+			this.chkMed2.Text = "Check-up";
+			this.chkMed2.UseVisualStyleBackColor = true;
 			// 
-			// chkMedicalConcern3
+			// chkMed3
 			// 
-			this.chkMedicalConcern3.AutoSize = true;
-			this.chkMedicalConcern3.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.chkMedicalConcern3.Location = new System.Drawing.Point(401, 352);
-			this.chkMedicalConcern3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.chkMedicalConcern3.Name = "chkMedicalConcern3";
-			this.chkMedicalConcern3.Size = new System.Drawing.Size(171, 29);
-			this.chkMedicalConcern3.TabIndex = 19;
-			this.chkMedicalConcern3.Text = "Medical Needs";
-			this.chkMedicalConcern3.UseVisualStyleBackColor = true;
+			this.chkMed3.AutoSize = true;
+			this.chkMed3.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.chkMed3.Location = new System.Drawing.Point(263, 352);
+			this.chkMed3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.chkMed3.Name = "chkMed3";
+			this.chkMed3.Size = new System.Drawing.Size(171, 29);
+			this.chkMed3.TabIndex = 11;
+			this.chkMed3.Text = "Medical Needs";
+			this.chkMed3.UseVisualStyleBackColor = true;
 			// 
 			// label10
 			// 
 			this.label10.AutoSize = true;
 			this.label10.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.label10.Location = new System.Drawing.Point(730, 227);
+			this.label10.Location = new System.Drawing.Point(515, 227);
 			this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label10.Name = "label10";
 			this.label10.Size = new System.Drawing.Size(144, 25);
@@ -315,20 +319,20 @@ namespace DiagnosisPrognosisClient
 			// dateBirthdate
 			// 
 			this.dateBirthdate.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.dateBirthdate.Location = new System.Drawing.Point(736, 271);
+			this.dateBirthdate.Location = new System.Drawing.Point(521, 271);
 			this.dateBirthdate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.dateBirthdate.Name = "dateBirthdate";
-			this.dateBirthdate.Size = new System.Drawing.Size(339, 32);
-			this.dateBirthdate.TabIndex = 21;
+			this.dateBirthdate.Size = new System.Drawing.Size(386, 32);
+			this.dateBirthdate.TabIndex = 12;
 			// 
 			// btnSubmit
 			// 
 			this.btnSubmit.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnSubmit.Location = new System.Drawing.Point(750, 546);
+			this.btnSubmit.Location = new System.Drawing.Point(846, 482);
 			this.btnSubmit.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.btnSubmit.Name = "btnSubmit";
 			this.btnSubmit.Size = new System.Drawing.Size(145, 58);
-			this.btnSubmit.TabIndex = 22;
+			this.btnSubmit.TabIndex = 16;
 			this.btnSubmit.Text = "Submit";
 			this.btnSubmit.UseVisualStyleBackColor = true;
 			this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
@@ -336,66 +340,65 @@ namespace DiagnosisPrognosisClient
 			// btnClear
 			// 
 			this.btnClear.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.btnClear.Location = new System.Drawing.Point(931, 546);
+			this.btnClear.Location = new System.Drawing.Point(653, 482);
 			this.btnClear.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.btnClear.Name = "btnClear";
 			this.btnClear.Size = new System.Drawing.Size(145, 58);
-			this.btnClear.TabIndex = 23;
+			this.btnClear.TabIndex = 15;
 			this.btnClear.Text = "Clear";
 			this.btnClear.UseVisualStyleBackColor = true;
-			this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
 			// 
 			// label11
 			// 
 			this.label11.AutoSize = true;
 			this.label11.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.label11.Location = new System.Drawing.Point(672, 353);
+			this.label11.Location = new System.Drawing.Point(521, 312);
 			this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(107, 25);
 			this.label11.TabIndex = 24;
 			this.label11.Text = "Allergies?";
 			// 
-			// radAllergy
+			// chkAllergy
 			// 
-			this.radAllergy.AutoSize = true;
-			this.radAllergy.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.radAllergy.Location = new System.Drawing.Point(804, 352);
-			this.radAllergy.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.radAllergy.Name = "radAllergy";
-			this.radAllergy.Size = new System.Drawing.Size(56, 26);
-			this.radAllergy.TabIndex = 25;
-			this.radAllergy.TabStop = true;
-			this.radAllergy.Text = "Yes";
-			this.radAllergy.UseVisualStyleBackColor = true;
+			this.chkAllergy.AutoSize = true;
+			this.chkAllergy.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+			this.chkAllergy.Location = new System.Drawing.Point(653, 311);
+			this.chkAllergy.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.chkAllergy.Name = "chkAllergy";
+			this.chkAllergy.Size = new System.Drawing.Size(56, 26);
+			this.chkAllergy.TabIndex = 13;
+			this.chkAllergy.TabStop = true;
+			this.chkAllergy.Text = "Yes";
+			this.chkAllergy.UseVisualStyleBackColor = true;
 			// 
 			// radioButton2
 			// 
 			this.radioButton2.AutoSize = true;
 			this.radioButton2.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.radioButton2.Location = new System.Drawing.Point(804, 389);
+			this.radioButton2.Location = new System.Drawing.Point(653, 348);
 			this.radioButton2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.radioButton2.Name = "radioButton2";
 			this.radioButton2.Size = new System.Drawing.Size(52, 26);
-			this.radioButton2.TabIndex = 26;
+			this.radioButton2.TabIndex = 14;
 			this.radioButton2.TabStop = true;
 			this.radioButton2.Text = "No";
 			this.radioButton2.UseVisualStyleBackColor = true;
 			// 
-			// txtStudentNumber
+			// txtStudentNum
 			// 
-			this.txtStudentNumber.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.txtStudentNumber.Location = new System.Drawing.Point(398, 508);
-			this.txtStudentNumber.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			this.txtStudentNumber.Name = "txtStudentNumber";
-			this.txtStudentNumber.Size = new System.Drawing.Size(291, 32);
-			this.txtStudentNumber.TabIndex = 28;
+			this.txtStudentNum.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.txtStudentNum.Location = new System.Drawing.Point(363, 508);
+			this.txtStudentNum.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+			this.txtStudentNum.Name = "txtStudentNum";
+			this.txtStudentNum.Size = new System.Drawing.Size(231, 32);
+			this.txtStudentNum.TabIndex = 8;
 			// 
 			// label12
 			// 
 			this.label12.AutoSize = true;
 			this.label12.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this.label12.Location = new System.Drawing.Point(394, 478);
+			this.label12.Location = new System.Drawing.Point(359, 478);
 			this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(179, 25);
@@ -406,19 +409,20 @@ namespace DiagnosisPrognosisClient
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1138, 629);
-			this.Controls.Add(this.txtStudentNumber);
+			this.BackColor = System.Drawing.Color.White;
+			this.ClientSize = new System.Drawing.Size(1008, 562);
+			this.Controls.Add(this.txtStudentNum);
 			this.Controls.Add(this.label12);
 			this.Controls.Add(this.radioButton2);
-			this.Controls.Add(this.radAllergy);
+			this.Controls.Add(this.chkAllergy);
 			this.Controls.Add(this.label11);
 			this.Controls.Add(this.btnClear);
 			this.Controls.Add(this.btnSubmit);
 			this.Controls.Add(this.dateBirthdate);
 			this.Controls.Add(this.label10);
-			this.Controls.Add(this.chkMedicalConcern3);
-			this.Controls.Add(this.chkMedicalConcern2);
-			this.Controls.Add(this.chkMedicalConcern1);
+			this.Controls.Add(this.chkMed3);
+			this.Controls.Add(this.chkMed2);
+			this.Controls.Add(this.chkMed1);
 			this.Controls.Add(this.label9);
 			this.Controls.Add(this.txtMiddleName);
 			this.Controls.Add(this.label8);
@@ -426,7 +430,7 @@ namespace DiagnosisPrognosisClient
 			this.Controls.Add(this.label7);
 			this.Controls.Add(this.cmbSex);
 			this.Controls.Add(this.cmbCourse);
-			this.Controls.Add(this.txtContactNumber);
+			this.Controls.Add(this.txtContactNum);
 			this.Controls.Add(this.txtAge);
 			this.Controls.Add(this.txtLastName);
 			this.Controls.Add(this.label5);
@@ -435,11 +439,13 @@ namespace DiagnosisPrognosisClient
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.PanelCeiling);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this.Name = "PatientForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "PatientForm";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PatientForm_FormClosing);
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PatientForm_FormClosed);
 			this.PanelCeiling.ResumeLayout(false);
 			this.PanelCeiling.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pbClose)).EndInit();
@@ -462,7 +468,7 @@ namespace DiagnosisPrognosisClient
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtLastName;
         private System.Windows.Forms.TextBox txtAge;
-        private System.Windows.Forms.TextBox txtContactNumber;
+        private System.Windows.Forms.TextBox txtContactNum;
         private System.Windows.Forms.ComboBox cmbCourse;
         private System.Windows.Forms.ComboBox cmbSex;
         private System.Windows.Forms.TextBox txtFirstName;
@@ -470,17 +476,17 @@ namespace DiagnosisPrognosisClient
         private System.Windows.Forms.TextBox txtMiddleName;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.CheckBox chkMedicalConcern1;
-        private System.Windows.Forms.CheckBox chkMedicalConcern2;
-        private System.Windows.Forms.CheckBox chkMedicalConcern3;
+        private System.Windows.Forms.CheckBox chkMed1;
+        private System.Windows.Forms.CheckBox chkMed2;
+        private System.Windows.Forms.CheckBox chkMed3;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DateTimePicker dateBirthdate;
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.RadioButton radAllergy;
+        private System.Windows.Forms.RadioButton chkAllergy;
         private System.Windows.Forms.RadioButton radioButton2;
-		private TextBox txtStudentNumber;
+		private TextBox txtStudentNum;
 		private Label label12;
 	}
 }

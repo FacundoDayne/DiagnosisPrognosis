@@ -217,7 +217,7 @@ namespace DiagnosisPrognosis
             this.btnSubmitDiagnosis.TabIndex = 28;
             this.btnSubmitDiagnosis.Text = "Diagnose";
             this.btnSubmitDiagnosis.UseVisualStyleBackColor = true;
-            this.btnSubmitDiagnosis.Click += new System.EventHandler(this.btnSubmitDiagnosis_Click);
+            //this.btnSubmitDiagnosis.Click += new System.EventHandler(this.btnSubmitDiagnosis_Click);
             // 
             // dgDiagnosis
             // 

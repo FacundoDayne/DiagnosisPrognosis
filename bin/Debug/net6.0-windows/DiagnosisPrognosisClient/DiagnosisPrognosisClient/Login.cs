@@ -5,33 +5,63 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DiagnosisPrognosisClient
 {
     public partial class Login : Form
-    {
-		Homepage home;
+	{
+		
 
-        public Login()
+		public Login()
         {
             InitializeComponent();
+        }
 
-		}
-		
         private void pbClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+			this.Dispose();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-
-			if (ConnectServer.checkServer())
+			if (ConnectServer.checkServer(txtIp.Text))
 			{
-				Thread.Sleep(5000);
+				Homepage home = null;
+				if (ConnectServer.CheckServerSuccess() == 1)
+				{
+					MessageBox.Show("Server failed to connect to database", "Server Error");
+					return;
+				}
+				if (ConnectServer.CheckServerSuccess() == 1)
+				{
+					MessageBox.Show("An error occured", "Server Error");
+					return;
+				}
+
+				if ((txtUsername.Text == "") || (txtPassword.Text == ""))
+				{
+					MessageBox.Show("Fill up the fields", "Login Error");
+					return;
+				}
+
+				if (ConnectServer.TryLogin(txtUsername.Text, txtPassword.Text) == 0)
+				{
+					MessageBox.Show("An error occured", "Server Login Error");
+					return;
+				}
+				else if (ConnectServer.TryLogin(txtUsername.Text, txtPassword.Text) == 1)
+				{
+					MessageBox.Show("Invalid Username", "Login Error");
+					return;
+				}
+				else if (ConnectServer.TryLogin(txtUsername.Text, txtPassword.Text) == 2)
+				{
+					MessageBox.Show("Invalid Password", "Login Error");
+					return;
+				}
+
 				if (home == null)
 				{
 					home = new Homepage(this);
@@ -44,13 +74,12 @@ namespace DiagnosisPrognosisClient
 				return;
 			}
 			MessageBox.Show("Server is offline", "Connection Error");
-        }
+		}
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-			//ConnectServer.searchIpAddresses();
-			//ConnectServer.PrintProcess();
-			ConnectServer.AskPatientTable();
+            txtUsername.Text = "";
+            txtPassword.Text = "";
         }
     }
 }

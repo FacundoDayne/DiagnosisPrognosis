@@ -48,7 +48,7 @@ namespace DiagnosisPrognosisClient
 			}
 		}
 
-		internal static bool checkServer()
+		internal static bool checkServer(string ipadd)
 		{
 			
 			if (searchProcess("DiagnosisPrognosis"))
@@ -68,7 +68,7 @@ namespace DiagnosisPrognosisClient
 			MessageBox.Show(Environment.ProcessPath);
 
 			
-			Process proc = System.Diagnostics.Process.Start(relativeProgramStr, "192.168.0.30");
+			Process proc = System.Diagnostics.Process.Start(relativeProgramStr, ipadd);
 
 			int numberOfAttempts = 0;
 			while (numberOfAttempts <= 10)
@@ -88,20 +88,62 @@ namespace DiagnosisPrognosisClient
 			return false;
 		}
 
-		public static bool CheckServerSuccess()
+		public static byte CheckServerSuccess()
 		{
-			List<string> receivedReply = ReceiveConfirmation();
+			List<string> receivedReply = AskDatabaseOpened();
 			string singleString = "";
 			foreach (string x in receivedReply)
 			{
 				singleString = singleString + x;
 			}
-			return false;
+			if (singleString.IndexOf("!dbISopen!") > -1)
+			{
+				return 2;
+			}
+			else if (singleString.IndexOf("!failed!") > -1)
+			{
+				return 1;
+			}
+			return 0;
+		}
+
+		public static byte TryLogin(string username, string password)
+		{
+			string request = $"<TOK>tempToken<EOT><IPP>ip:port<EOI><AUT>{username}<AUT>{password}<EOA><INS>requestLogin<EOC>";
+			List<string> receivedReply = StartClient(request);
+			string singleString = "";
+			string[] data = GetData(receivedReply);
+			foreach (string x in receivedReply)
+			{
+				singleString = singleString + x;
+			}
+
+			if (singleString.IndexOf("!Success!") > -1)
+			{
+				Transfer.userid = Convert.ToInt32(data[3]); Debug.WriteLine(data[3]);
+				Transfer.usertype = Convert.ToInt32(data[4]); Debug.WriteLine(data[4]);
+				return 3;
+			}
+			else if (singleString.IndexOf("!usernamefail!") > -1)
+			{
+				return 1;
+			}
+			else if (singleString.IndexOf("!passwordfail!") > -1)
+			{
+				return 2;
+			}
+			return 0;
 		}
 
 		public static void AskIP()
 		{
 			StartClient("ippadd");
+		}
+
+		public static List<string> AskDatabaseOpened()
+		{
+			string request = "<TOK>tempToken<EOT><IPP>ip:port<EOI><AUT>tempUser<AUT>tempPass<EOA><INS>checkDbIsOpen<EOC>";
+			return StartClient(request);
 		}
 
 		public static List<string> AskPatientTable()
@@ -119,6 +161,53 @@ namespace DiagnosisPrognosisClient
 		public static List<string> AskAddPatient(string Data)
 		{
 			string request = $"<TOK>tempToken<EOT><IPP>ip:port<EOI><AUT>tempUser<AUT>tempPass<EOA><INS>addPatient<EOC><DAT>{Data}<EOD>";
+			return StartClient(request);
+		}
+
+		public static List<string> AskUpdatePatient(string Data)
+		{
+			string request = $"<TOK>tempToken<EOT><IPP>ip:port<EOI><AUT>tempUser<AUT>tempPass<EOA><INS>updatePatient<EOC><DAT>{Data}<EOD>";
+			return StartClient(request);
+		}
+
+		public static List<string> AskSexCourse()
+		{
+			string request = $"<TOK>tempToken<EOT><IPP>ip:port<EOI><AUT>tempUser<AUT>tempPass<EOA><INS>sexCourseInfo<EOC>";
+			return StartClient(request);
+		}
+
+		public static List<string> AskPatientAllInfo(int ID)
+		{
+			string request = $"<TOK>tempToken<EOT><IPP>ip:port<EOI><AUT>tempUser<AUT>tempPass<EOA><INS>patientAllInfo<EOC><DAT>{ID}<EOD>";
+			return StartClient(request);
+		}
+
+		public static List<string> AskSexCoursePatientAllInfo(int ID)
+		{
+			string request = $"<TOK>tempToken<EOT><IPP>ip:port<EOI><AUT>tempUser<AUT>tempPass<EOA><INS>patientAllInfoSC<EOC><DAT>{ID}<EOD>";
+			return StartClient(request);
+		}
+
+		public static List<string> AskSymptomTable()
+		{
+			string request = $"<TOK>tempToken<EOT><IPP>ip:port<EOI><AUT>tempUser<AUT>tempPass<EOA><INS>requestSymptoms<EOC>";
+			return StartClient(request);
+		}
+
+		public static List<string> SubmitSymptoms(List<int> symptomIds)
+		{
+			string ids = "%GetIllnesses%";
+			foreach (int x in symptomIds)
+			{
+				ids += x + "%GetIllnesses%";
+			}
+			string request = $"<TOK>tempToken<EOT><IPP>ip:port<EOI><AUT>tempUser<AUT>tempPass<EOA><INS>GetIllnesses<EOC><DAT>" + ids + "<EOD>";
+			return StartClient(request);
+		}
+
+		public static List<string> SubmitDiagnosis(string symptoms, string illness)
+		{
+			string request = $"<TOK>tempToken<EOT><IPP>ip:port<EOI><AUT>tempUser<AUT>tempPass<EOA><INS>SaveDiagnosis<EOC><DAT>" + Transfer.userid + "%Diagnosis%" + symptoms + "%Diagnosis%" + illness + "<EOD>";
 			return StartClient(request);
 		}
 
@@ -224,12 +313,14 @@ namespace DiagnosisPrognosisClient
 				try
 				{
 					sender.Connect(remoteEP);
-
+					sender.SendTimeout = 30;
 					Debug.WriteLine("Socket connected to " +
 						sender.RemoteEndPoint.ToString());
 
 					while (true)
 					{
+						byte[] msg = Encoding.ASCII.GetBytes("?isDBon?<EOF>");
+						sender.Send(msg);
 						int bytesRec = sender.Receive(bytes);
 						string dataRec = Encoding.ASCII.GetString(bytes, 0, bytesRec);
 
@@ -320,6 +411,29 @@ namespace DiagnosisPrognosisClient
 			}
 			Debug.WriteLine("PU");
 			return null;
+		}
+
+		public static string[] GetData(List<String> data)
+		{
+			string fullString = "";
+			foreach (string x in data)
+			{
+				fullString = fullString + x;
+			}
+			string[] separator = { "<TOK>", "<IPP>", "<AUT>", "<INS>", "<DAT>", "<EOF>", "<EOT>", "<EOI>", "<EOA>", "<EOC>", "<EOD>" };
+			
+			string[] extracted = fullString.Split(separator, StringSplitOptions.RemoveEmptyEntries);
+			List<string> noSpaces = new List<string>();
+			
+			foreach (string x in extracted)
+			{
+				if (x != "")
+				{
+					noSpaces.Add(x);
+				}
+			}
+			string[] outp = noSpaces.ToArray();
+			return outp;
 		}
 	}
 }

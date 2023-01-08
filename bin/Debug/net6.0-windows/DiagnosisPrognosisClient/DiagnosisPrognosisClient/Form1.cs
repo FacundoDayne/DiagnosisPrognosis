@@ -19,48 +19,77 @@ namespace DiagnosisPrognosisClient
             InitializeComponent();
             addPatientForm1.Visible = false;
             diagnosisUC1.Visible = false;
-            inventoryUC1.Visible = false;
+			inventoryuc1.Visible = false;
+            
 
         }
-
-        private void btnPatientInfo_Click(object sender, EventArgs e)
+        private void Homepage_Load(object sender, EventArgs e)
         {
-            addPatientForm1.Visible = !addPatientForm1.Visible;
-            diagnosisUC1.Visible = false;
-            inventoryUC1.Visible = false;
-        }
 
-        private void btnDiagnosis_Click(object sender, EventArgs e)
-        {
-            diagnosisUC1.Visible = !diagnosisUC1.Visible;
-            addPatientForm1.Visible = false;
-            inventoryUC1.Visible = false;
         }
-
-        private void btnInventory_Click(object sender, EventArgs e)
-        {
-            inventoryUC1.Visible = !inventoryUC1.Visible;
-            addPatientForm1.Visible = false;
-            diagnosisUC1.Visible = false;
-        }
-
-        private void pbClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
+        
+        
         private void pbSTIlogo_Click(object sender, EventArgs e)
         {
             pbSTICampus.Visible = true;
             addPatientForm1.Visible = false;
             diagnosisUC1.Visible = false;
-            inventoryUC1.Visible = false;
+            inventoryuc1.Visible = false;
         }
 
-        private void btnLogout_Click(object sender, EventArgs e)
+
+        private void pbClose_Click_1(object sender, EventArgs e)
+		{
+			CloseThis();
+		}
+
+        private void pbPatient_Click(object sender, EventArgs e)
         {
-			this.Visible = false;
-			log.Visible = true;
+            addPatientForm1.Visible = !addPatientForm1.Visible;
+            diagnosisUC1.Visible = false;
+			inventoryuc1.Visible = false;
+			if (addPatientForm1.Visible == false)
+				pbSTICampus.Visible = true;
+			else
+				pbSTICampus.Visible = false;
+		}
+
+        private void pbDiagnosis_Click(object sender, EventArgs e)
+        {
+
+            diagnosisUC1.Visible = !diagnosisUC1.Visible;
+            addPatientForm1.Visible = false;
+			inventoryuc1.Visible = false;
+			if (diagnosisUC1.Visible == false)
+				pbSTICampus.Visible = true;
+			else
+				pbSTICampus.Visible = false;
+		}
+
+        private void pbInventory_Click(object sender, EventArgs e)
+        {
+			inventoryuc1.Visible = !inventoryuc1.Visible;
+            addPatientForm1.Visible = false;
+            diagnosisUC1.Visible = false;
+			if (inventoryuc1.Visible == false)
+				pbSTICampus.Visible = true;
+			else
+				pbSTICampus.Visible = false;
+		}
+
+        private void pbLogout_Click(object sender, EventArgs e)
+		{
         }
-    }
+
+		private void Homepage_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			CloseThis();
+		}
+		
+		private void CloseThis()
+		{
+			log.Visible = true;
+			this.Dispose();
+		}
+	}
 }

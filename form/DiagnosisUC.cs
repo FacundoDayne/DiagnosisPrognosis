@@ -106,7 +106,7 @@ namespace DiagnosisPrognosis
                 }
             }
         }
-
+		/*
         private void btnSubmitDiagnosis_Click(object sender, EventArgs e)
         {
             List<Illness> matched = SQLCommands.GetIllness(symptoms);
@@ -122,7 +122,7 @@ namespace DiagnosisPrognosis
             dgDiagnosis.Columns[2].Width = 60;
             //dgDiagnosis.Sort(dgDiagnosis.Columns[1], ListSortDirection.Descending);
         }
-
+		*/
         protected class displayItems
         {
             private string _name;

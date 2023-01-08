@@ -87,19 +87,19 @@ namespace DiagnosisPrognosisClient
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Cambria", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(185, 22);
+            this.label1.Size = new System.Drawing.Size(192, 22);
             this.label1.TabIndex = 4;
             this.label1.Text = "Add Symptoms Here:";
             // 
             // pbClose
             // 
-            this.pbClose.Image = global::DiagnosisPrognosisClient.Properties.Resources.Close;
-            this.pbClose.Location = new System.Drawing.Point(403, 5);
+            this.pbClose.Image = global::DiagnosisPrognosisClient.Properties.Resources.Exit_new;
+            this.pbClose.Location = new System.Drawing.Point(390, 5);
             this.pbClose.Name = "pbClose";
-            this.pbClose.Size = new System.Drawing.Size(35, 31);
+            this.pbClose.Size = new System.Drawing.Size(48, 42);
             this.pbClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbClose.TabIndex = 5;
             this.pbClose.TabStop = false;
@@ -109,6 +109,7 @@ namespace DiagnosisPrognosisClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(444, 545);
             this.Controls.Add(this.pbClose);
             this.Controls.Add(this.label1);

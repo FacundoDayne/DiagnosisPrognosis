@@ -2,7 +2,7 @@
   "profiles": {
     "DiagnosisPrognosis": {
       "commandName": "Project",
-      "commandLineArgs": "192.168.10.1"
+      "commandLineArgs": "192.168.0.30"
     }
   }
 }

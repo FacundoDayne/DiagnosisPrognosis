@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,7 +16,6 @@ namespace DiagnosisPrognosisClient
         public AddPatientForm()
         {
             InitializeComponent();
-			//UpdateData();
         }
 
         private void label7_Click(object sender, EventArgs e)
@@ -38,22 +38,42 @@ namespace DiagnosisPrognosisClient
 
         }
 
-		private void btnDeletePatient_Click(object sender, EventArgs e)
+		private void dgPatients_SelectionChanged(object sender, EventArgs e)
 		{
-			
-		}
-
-		private void btnEditPatient_Click(object sender, EventArgs e)
-		{
-			dgPatients.DataSource = null;
+			int id = -1;
+			try
+			{
+				id = Convert.ToInt32(dgPatients.CurrentRow.Cells[0].Value);
+			}
+			catch (NullReferenceException)
+			{
+				id = -1;
+			}
+			catch (IndexOutOfRangeException)
+			{
+				id = -1;
+			}
+			catch (InvalidCastException)
+			{
+				id = -1;
+			}
+			if (id == -1)
+				return;
+			UpdateInfo(id);
+			Debug.WriteLine(id);
 		}
 
 		public void UpdateData()
 		{
+			dgPatients.ClearSelection();
+
 			string[] ends = { "%patientTable%" };
 			string[] datas = ConnectServer.GetData(ConnectServer.AskPatientTable(), ends);
 			DataSet PatientTable = DataSerial.DeserializeData(datas[0]);
 			dgPatients.DataSource = PatientTable.Tables[0];
+			dgPatients.Columns[0].Width = 1;
+			dgPatients.Columns[0].Visible = false;
+			dgPatients.Columns[1].Width = 464;
 
 			DataSet PatientList = DataSerial.DeserializeData(datas[1]);
 
@@ -67,10 +87,10 @@ namespace DiagnosisPrognosisClient
 			//dgPatients.Update();
 		}
 
-		public void UpdateInfo()
+		public void UpdateInfo(int id)
 		{
 			string[] ends = { "%patientInfo%" };
-			string[] data = ConnectServer.GetData(ConnectServer.AskPatientInfo(Convert.ToInt32(cmbSearchPatient.SelectedValue)), ends);
+			string[] data = ConnectServer.GetData(ConnectServer.AskPatientInfo(id), ends);
 
 			lblPatient.Text = data[0];
 			lblAge.Text = data[1];
@@ -78,25 +98,40 @@ namespace DiagnosisPrognosisClient
 			lblCourse.Text = data[3];
 		}
 
-		private void btnEditPatient_VisibleChanged(object sender, EventArgs e)
+		private void btnDeletePatient_Click(object sender, EventArgs e)
 		{
 			UpdateData();
 		}
 
-		private void cmbSearchPatient_SelectionChangeCommitted(object sender, EventArgs e)
-		{
-			UpdateInfo();
-		}
-
 		private void btnNewPatient_Click(object sender, EventArgs e)
 		{
-			PatientForm form = new PatientForm();
-			this.Visible = false;
-			form.ShowDialog();
-			if (form.ShowDialog() == DialogResult.OK)
+			PatientForm frm = new PatientForm();
+			frm.ShowDialog();
+			if (frm.DialogResult == DialogResult.OK)
 			{
-				this.Visible = true;
+				UpdateData();
 			}
+		}
+
+		private void btnEditPatient_Click(object sender, EventArgs e)
+		{
+			if (Convert.ToInt32(dgPatients.CurrentRow.Cells[0].Value) < 0)
+			{
+				return;
+			}
+			PatientForm frm = new PatientForm(Convert.ToInt32(dgPatients.CurrentRow.Cells[0].Value));
+			
+			frm.ShowDialog();
+
+			if (frm.DialogResult == DialogResult.OK)
+			{
+				UpdateData();
+			}
+		}
+
+		private void AddPatientForm_VisibleChanged(object sender, EventArgs e)
+		{
+
 		}
 	}
 }

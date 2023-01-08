@@ -8,4 +8,93 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="newForm\Program.cs" />
+    <Compile Remove="oldForm\DiagnosisUC.cs" />
+    <Compile Remove="oldForm\DiagnosisUC.Designer.cs" />
+    <Compile Remove="oldForm\Form1.cs" />
+    <Compile Remove="oldForm\Form1.Designer.cs" />
+    <Compile Remove="oldForm\InventoryUC.cs" />
+    <Compile Remove="oldForm\InventoryUC.Designer.cs" />
+    <Compile Remove="oldForm\Login.cs" />
+    <Compile Remove="oldForm\Login.Designer.cs" />
+    <Compile Remove="oldForm\PatientForm.cs" />
+    <Compile Remove="oldForm\PatientForm.Designer.cs" />
+    <Compile Remove="oldForm\PatientInfoUC.cs" />
+    <Compile Remove="oldForm\PatientInfoUC.Designer.cs" />
+    <Compile Remove="oldForm\PSymptomsForm.cs" />
+    <Compile Remove="oldForm\PSymptomsForm.Designer.cs" />
+    <Compile Remove="oldForm\QueueingForm.cs" />
+    <Compile Remove="oldForm\QueueingForm.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="oldForm\DiagnosisUC.resx" />
+    <EmbeddedResource Remove="oldForm\Form1.resx" />
+    <EmbeddedResource Remove="oldForm\InventoryUC.resx" />
+    <EmbeddedResource Remove="oldForm\Login.resx" />
+    <EmbeddedResource Remove="oldForm\PatientForm.resx" />
+    <EmbeddedResource Remove="oldForm\PatientInfoUC.resx" />
+    <EmbeddedResource Remove="oldForm\PSymptomsForm.resx" />
+    <EmbeddedResource Remove="oldForm\QueueingForm.resx" />
+  </ItemGroup>
+<ItemGroup>
+    <None Include="Resources\sti logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\global.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rsz_update_details.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add diag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rsz_history1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Exit new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add new patient.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rsz_update_details1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rsz_update_details2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add diag1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sti bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="newForm\" />
+    <Folder Include="oldForm\" />
+  </ItemGroup>
 </Project>

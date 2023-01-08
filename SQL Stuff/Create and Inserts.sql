@@ -120,3 +120,79 @@ INSERT INTO CourseTable values
 insert into PatientTable values
 --('Facundo', 'Dayne', 'Santos', 22, 1, 0, 09457719540, '2000-11-19', 1, 1, 1,0);
 ('Facundo', 'Kyle', 'Santos', 20, 2, 0, 09, '2000-10-10', 0,0,0,1);
+
+CREATE TABLE DoctorTable
+(
+	doctor_id int identity(0,1) primary key, 
+	doctor_lastname varchar(30), 
+	doctor_firstname varchar(30),
+	doctor_middlename varchar(30)
+);
+
+CREATE TABLE AdminTable
+(
+	admin_id int identity(0,1) primary key, 
+	admin_lastname varchar(30), 
+	admin_firstname varchar(30),
+	admin_middlename varchar(30)
+);
+
+CREATE TABLE UserType 
+	(
+	type_id int primary key identity(0,1), 
+	descr varchar(64) not null
+);
+
+CREATE TABLE UserTable 
+	(
+	id int primary key identity(0,1), 
+	username varchar (64) not null UNIQUE, 
+	password varchar(512) not null, 
+	usertype int not null foreign key references UserType(type_id), 
+	patientID int null foreign key references PatientTable(patient_id), 
+	doctorID int null foreign key references DoctorTable(doctor_id), 
+	adminID int null foreign key references AdminTable(admin_id)
+);
+
+insert into UserType values ('Patient'), ('Doctor'), ('Admin');
+
+
+
+
+insert into DoctorTable values ('Doctor', 'John', 'Medical');
+insert into AdminTable values ('Admin', 'John', 'Superuser');
+
+insert into UserTable values 
+('facundodayne', 'password123', 0, 0, null, null), 
+('facundokyle', 'password123', 0, 1, null, null), 
+('riverajuan', 'password123', 0, 2, null, null), 
+('vonmackensen', 'password123', 0, 3, null, null),
+('johndoctor', 'password123', 1, null, 0, null),
+('johnadmin', 'password123', 2, null, null, 0)
+
+CREATE TABLE PatientSymptomsTable(
+	PatientSymptomPairKey varchar(21) primary key not null,
+	PatientID int foreign key references PatientTable(patient_id) not null, 
+	SymptomID int foreign key references SymptomsTable(symptom_id) not null, 
+);
+
+CREATE TABLE PatientDiagnosisTable(
+	PatientSymptomPairKey varchar(21) primary key not null,
+	PatientID int foreign key references PatientTable(patient_id) not null,
+	IllnessID int foreign key references IllnessTable(illness_id) not null,
+	numOfMatchSymptoms int not null,
+	numOfSymptoms int not null,
+	isConfirmed bit not null
+)
+
+CREATE TABLE PatientSymptomsTable(
+	PatientSymptomPairKey varchar(21) primary key not null,
+	PatientID int foreign key references PatientTable(patient_id) not null, 
+	SymptomID int foreign key references SymptomsTable(symptom_id) not null, 
+);
+drop table PatientDiagnosisTable;
+CREATE TABLE PatientDiagnosisTable(
+	PatientSymptomPairKey varchar(21) primary key not null,
+	PatientID int foreign key references PatientTable(patient_id) not null,
+	IllnessID int foreign key references IllnessTable(illness_id) not null
+)

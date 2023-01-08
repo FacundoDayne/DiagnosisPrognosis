@@ -38,13 +38,14 @@ namespace DiagnosisPrognosisClient
             // 
             // btnGetNumber
             // 
+            this.btnGetNumber.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(87)))), ((int)(((byte)(155)))));
             this.btnGetNumber.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGetNumber.Location = new System.Drawing.Point(21, 68);
             this.btnGetNumber.Name = "btnGetNumber";
             this.btnGetNumber.Size = new System.Drawing.Size(149, 102);
             this.btnGetNumber.TabIndex = 0;
             this.btnGetNumber.Text = "Get Number";
-            this.btnGetNumber.UseVisualStyleBackColor = true;
+            this.btnGetNumber.UseVisualStyleBackColor = false;
             // 
             // label1
             // 
@@ -70,7 +71,7 @@ namespace DiagnosisPrognosisClient
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Cambria", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(56)))), ((int)(((byte)(23)))));
             this.label3.Location = new System.Drawing.Point(37, 173);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(110, 12);
@@ -81,7 +82,7 @@ namespace DiagnosisPrognosisClient
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Cambria", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(56)))), ((int)(((byte)(23)))));
             this.label2.Location = new System.Drawing.Point(210, 145);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(202, 12);
@@ -92,6 +93,7 @@ namespace DiagnosisPrognosisClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(209)))), ((int)(((byte)(199)))));
             this.ClientSize = new System.Drawing.Size(444, 232);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);

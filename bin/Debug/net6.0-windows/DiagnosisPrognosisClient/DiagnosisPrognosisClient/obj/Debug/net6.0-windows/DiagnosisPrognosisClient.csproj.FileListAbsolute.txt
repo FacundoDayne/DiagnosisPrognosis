@@ -48,3 +48,5 @@ C:\Users\Rivera\source\repos\FacundoDayne\DiagnosisPrognosis\bin\Debug\net6.0-wi
 C:\Users\Rivera\source\repos\FacundoDayne\DiagnosisPrognosis\bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\obj\Debug\net6.0-windows\DiagnosisPrognosisClient.pdb
 C:\Users\Rivera\source\repos\FacundoDayne\DiagnosisPrognosis\bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\obj\Debug\net6.0-windows\DiagnosisPrognosisClient.genruntimeconfig.cache
 C:\Users\Rivera\source\repos\FacundoDayne\DiagnosisPrognosis\bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\obj\Debug\net6.0-windows\ref\DiagnosisPrognosisClient.dll
+C:\Users\Rivera\source\repos\FacundoDayne\DiagnosisPrognosis\bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\obj\Debug\net6.0-windows\DiagnosisPrognosisClient.SymptomsUC.resources
+C:\Users\Rivera\source\repos\FacundoDayne\DiagnosisPrognosis\bin\Debug\net6.0-windows\DiagnosisPrognosisClient\DiagnosisPrognosisClient\obj\Debug\net6.0-windows\DiagnosisPrognosisClient.IPSelection.resources

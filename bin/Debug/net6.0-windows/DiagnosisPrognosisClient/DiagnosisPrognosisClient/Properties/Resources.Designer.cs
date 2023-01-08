@@ -22,7 +22,7 @@ namespace DiagnosisPrognosisClient.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace DiagnosisPrognosisClient.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DiagnosisPrognosisClient.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace DiagnosisPrognosisClient.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace DiagnosisPrognosisClient.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap add_diag {
+        public static System.Drawing.Bitmap add_diag {
             get {
                 object obj = ResourceManager.GetObject("add diag", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,7 +73,27 @@ namespace DiagnosisPrognosisClient.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Close {
+        public static System.Drawing.Bitmap add_diag1 {
+            get {
+                object obj = ResourceManager.GetObject("add diag1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap add_new_patient {
+            get {
+                object obj = ResourceManager.GetObject("add new patient", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Close {
             get {
                 object obj = ResourceManager.GetObject("Close", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,7 +103,7 @@ namespace DiagnosisPrognosisClient.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap exit {
+        public static System.Drawing.Bitmap exit {
             get {
                 object obj = ResourceManager.GetObject("exit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -93,7 +113,17 @@ namespace DiagnosisPrognosisClient.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap global {
+        public static System.Drawing.Bitmap Exit_new {
+            get {
+                object obj = ResourceManager.GetObject("Exit new", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap global {
             get {
                 object obj = ResourceManager.GetObject("global", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -103,7 +133,37 @@ namespace DiagnosisPrognosisClient.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap rsz_history1 {
+        public static System.Drawing.Bitmap Inventory {
+            get {
+                object obj = ResourceManager.GetObject("Inventory", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Logout {
+            get {
+                object obj = ResourceManager.GetObject("Logout", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Patient_info {
+            get {
+                object obj = ResourceManager.GetObject("Patient info", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap rsz_history1 {
             get {
                 object obj = ResourceManager.GetObject("rsz_history1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -113,7 +173,17 @@ namespace DiagnosisPrognosisClient.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap rsz_update_details {
+        public static System.Drawing.Bitmap rsz_hospital_information {
+            get {
+                object obj = ResourceManager.GetObject("rsz_hospital_information", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap rsz_update_details {
             get {
                 object obj = ResourceManager.GetObject("rsz_update_details", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -123,7 +193,37 @@ namespace DiagnosisPrognosisClient.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap sti_logo {
+        public static System.Drawing.Bitmap rsz_update_details1 {
+            get {
+                object obj = ResourceManager.GetObject("rsz_update_details1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap rsz_update_details2 {
+            get {
+                object obj = ResourceManager.GetObject("rsz_update_details2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap sti_bg {
+            get {
+                object obj = ResourceManager.GetObject("sti bg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap sti_logo {
             get {
                 object obj = ResourceManager.GetObject("sti logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));

@@ -105,7 +105,7 @@ namespace DiagnosisPrognosis
         */
         
         List<Illness> Illnesses = new List<Illness>();
-
+		/*
         public static List<Illness> GetIllness(List<Symptom> symptoms)
         {
             List<Illness> MatchIllnesses = new List<Illness>();
@@ -212,8 +212,9 @@ namespace DiagnosisPrognosis
             }
             return MatchIllnesses;
         }
-    }
-    public class Symptom 
+		*/
+	}
+	public class Symptom 
     {
         private int _symptomID;
         private string _symptomName;
@@ -231,8 +232,8 @@ namespace DiagnosisPrognosis
     {
         private int _illnessID;
         private string _illnessName;
-        private List<Symptom> _symptoms;
-        private List<Symptom> _MatchSymptoms;
+        private List<int> _symptoms;
+        private List<int> _MatchSymptoms;
 
         private int _virality;
         public int virality { get => _virality; set => _virality = value; }
@@ -240,19 +241,19 @@ namespace DiagnosisPrognosis
         public int illnessID { get => _illnessID; set => _illnessID = value; }
         public string illnessName { get => _illnessName; set => _illnessName = value; }
 
-        public Illness(int illnessID, string illnessName, List<Symptom> matchedSymptoms)
+        public Illness(int illnessID, string illnessName, List<int> matchedSymptoms)
         {
             _illnessID = illnessID;
             _illnessName = illnessName;
-            _symptoms = new List<Symptom>(matchedSymptoms);
+            _symptoms = new List<int>(matchedSymptoms);
         }
 
-        public Illness(int illnessID, string illnessName, Symptom initialMatch, int viral)
+        public Illness(int illnessID, string illnessName, int initialMatch, int viral)
         {
             _illnessID = illnessID;
             _illnessName = illnessName;
-            _symptoms = new List<Symptom>();
-            _MatchSymptoms = new List<Symptom>();
+            _symptoms = new List<int>();
+            _MatchSymptoms = new List<int>();
             _MatchSymptoms.Add(initialMatch);
             _virality = viral;
         }
@@ -267,34 +268,34 @@ namespace DiagnosisPrognosis
         {
             _illnessID = old.illnessID;
             _illnessName = old.illnessName;
-            _symptoms = new List<Symptom>();
+            _symptoms = new List<int>();
             foreach (OldSymptom x in old.getAllSymptom())
             {
-                _symptoms.Add(new Symptom(x.symptomID, x.symptomName));
+                _symptoms.Add(x.symptomID);
             }
-            _MatchSymptoms = new List<Symptom>();
+            _MatchSymptoms = new List<int>();
             foreach (OldSymptom x in old.getAllMatches())
             {
-                _MatchSymptoms.Add(new Symptom(x.symptomID, x.symptomName));
+                _MatchSymptoms.Add(x.symptomID);
             }
         }
 
-        public List<Symptom> returnSymptoms()
+        public List<int> returnSymptoms()
         {
             return _symptoms;
         }
 
-        public Symptom getSymptom(int index)
+        public int getSymptom(int index)
         {
             return _symptoms[index];
         }
 
-        public List<Symptom> getAllSymptom()
+        public List<int> getAllSymptom()
         {
             return _symptoms;
         }
 
-        public void addSymptom(Symptom symptom)
+        public void addSymptom(int symptom)
         {
             _symptoms.Add(symptom);
         }
@@ -304,17 +305,17 @@ namespace DiagnosisPrognosis
             return _symptoms.Count;
         }
 
-        public void AddMatchSymptoms(Symptom symptom)
+        public void AddMatchSymptoms(int symptom)
         {
             _MatchSymptoms.Add(symptom);
         }
 
-        public void AddMatchSymptoms(Symptom[] symptoms)
+        public void AddMatchSymptoms(int[] symptoms)
         {
             _MatchSymptoms.AddRange(symptoms);
         }
 
-        public List<Symptom> getAllMatches()
+        public List<int> getAllMatches()
         {
             return _MatchSymptoms;
         }
